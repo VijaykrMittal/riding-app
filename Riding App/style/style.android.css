@@ -1,0 +1,76 @@
+@media (min-width:0px) and (max-width:1280px) {
+}
+
+@media (min-width:0px) and (max-width:1024px) {
+}
+
+@media screen and (max-width: 960px){
+}
+
+@media (min-width:0px) and (max-width:800px) {
+}
+
+@media (min-width:0px) and (max-width:768px) {
+}
+
+@media (min-width:0px) and (max-width:640px) {
+}
+
+@media (min-width:0px) and (max-width:630px) {
+}
+
+@media (min-width:0px) and (max-width:600px) {
+}
+
+@media (min-width:0px) and (max-width:599px) {
+}
+
+@media (min-width:0px) and (max-width:580px) {
+}
+
+@media (min-width:0px) and (max-width:533px) {
+}
+
+@media (min-width:0px) and (max-width:440px) {
+}
+
+@media (min-width:0px) and (max-width:410px) {
+}
+
+@media (min-width:0px) and (max-width:390px) {
+    .nvbar {background:#fff !important}
+    .nvbar a{background-image:url(./images/ic_drawer.png) !important;width: 24px;height: 25px;border:none !important}
+    .nvbar span {}
+    .midDiv {height:515px;background:url(./images/bkgroad.jpg) no-repeat;background-size:100% 100%}
+    .nvbar .km-button {background:none}
+    .footer {width:100%;height:50px;background:#fff}
+    .footer .btnDv {width:85%;margin:0px auto}
+    .btnDv a {width:48%;height:45px;line-height: 29px;}
+    .btnDv a {border:none !important;background:none !important;color:#1C9CC2 !important;font-size: 17px;}
+    .btnDv a:active {border:none !important;background:none !important;color:#1C9CC2 !important;font-size: 17px;}
+    .btnDv a:nth-child(1) {background: url(./images/search.png) no-repeat !important;background-size: 15%!important;background-position: 8px 13px !important;}
+    .btnDv a:nth-child(2) {text-align: right;background: url(./images/offer.png) no-repeat !important;background-size: 15%!important;background-position: 23px 12px !important;}
+    .contentDv p:nth-child(1){width: 55%;font-size: 25px;color: #fff;text-align: center;position: absolute;top: 0px;left: 20%;}
+    .contentDv p:nth-child(2){width: 80%;font-size: 18px;font-weight: 400;color: #000;text-align: center;position: absolute;top: 120px;left: 8%;}
+    #maindrawer ul li{height: 48px;}
+    #maindrawer ul li:first-child{text-align: center;font-size: 18px;background-color: #ccc;color: #458CB2;}
+    #maindrawer .blank {height: 10px;background-color: #ccc;}
+    #maindrawer .drwerfindRide{background: url(./images/drawer_find.png) no-repeat;background-position: 18px 12px;background-size: 22px;text-align: center;}
+    #maindrawer .drwerfindRide span{margin-left: -34px;font-size: 17px;line-height: 27px;}
+    #maindrawer .drwerrides{background: url(./images/drawer_yourrides.png) no-repeat;background-position: 18px 12px;background-size: 22px;text-align: center;}
+    #maindrawer .drwerrides span{margin-left: -34px;font-size: 17px;line-height: 27px;}
+    #maindrawer .drwerofferride{background: url(./images/drawer_offer.png) no-repeat;background-position: 18px 12px;background-size: 22px;text-align: center;}
+    #maindrawer .drwerofferride span{margin-left: -34px;font-size: 17px;line-height: 27px;}
+    #maindrawer .drwerlogin{background: url(./images/drawer_login.png) no-repeat;background-position: 18px 12px;background-size: 22px;text-align: center;}
+    #maindrawer .drwerlogin span{margin-left: -34px;font-size: 17px;line-height: 27px;}
+    #maindrawer .drwersignup{background: url(./images/drawer_signup.png) no-repeat;background-position: 18px 12px;background-size: 22px;text-align: center;}
+    #maindrawer .drwersignup span{margin-left: -34px;font-size: 17px;line-height: 27px;}
+    #maindrawer .drwerhelp{background: url(./images/drawer_help.png) no-repeat;background-position: 18px 12px;background-size: 22px;text-align: center;}
+    #maindrawer .drwerhelp span{margin-left: -34px;font-size: 17px;line-height: 27px;}
+}
+
+@media (min-width:0px) and (max-width:370px) {
+}
+
+@media (min-width:0px) and (max-width:320px) {
+}

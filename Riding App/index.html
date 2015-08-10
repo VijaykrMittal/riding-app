@@ -3,7 +3,10 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+    <link href="kendo/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="kendo/styles/kendo.default.min.css" rel="stylesheet" />
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="style/style.css" rel="stylesheet" />
 
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
@@ -12,5 +15,31 @@
 </head>
 <body>
     
+    <div data-role="layout" data-id="main-layout">
+        <div data-role="header">
+            <div data-role="navbar" class="nvbar">
+                <a data-role="button" data-rel="drawer" href="#maindrawer" data-align="left" style=""></a>
+                <span data-role="view-title"></span>
+            </div>
+        </div>
+    </div>
+    
+    <div data-role="drawer" id="maindrawer" data-use-native-scrolling="true" data-swipe-to-open="false">
+        <ul data-role="listview">
+            <li>Choose Option</li>
+            <li class="drwerrides"><span>Your rides</span></li>
+            <li class="drwerfindRide"><span>Find a ride</span></li>
+            <li class="drwerofferride"><span>Offer a ride</span></li>
+            <li class="blank"></li>
+            <li class="drwerlogin"><span>Login</span></li>
+            <li class="drwersignup"><span>Sign up</span></li>
+            <li class="blank"></li>
+            <li class="drwerhelp"><span>Help</span></li>
+        </ul>
+    </div>
+    
+    <!--External Files Placce here-->
+    <script src="script/app.js"></script>
+    <script src="script/home.js"></script>
 </body>
 </html>
