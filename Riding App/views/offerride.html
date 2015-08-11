@@ -1,3 +1,60 @@
-<div data-role="view" id="offerRideView" data-transition="overlay:left">
-    Offer a reide
+<div data-role="view" id="offerRideView" data-title="Offer a ride" data-use-native-scrolling="true" data-transition="overlay:left" data-model="app.offer.viewModel" data-show="app.offer.viewModel.show">
+   <div data-role="content">
+       <form id="offerridefrm">
+           <div class="departuremainDv">
+               <div class="imgwithDv">
+                   <div class="imgDV">
+                       <p>
+                           <img src="style/images/ic_poi_departure.png"/>
+                       </p>
+                   </div>
+                   <div class="txtDv">
+                       <p>
+                           <input type="text" name="source" class="txtfld" placeholder="From (specific address)"/>
+                       </p>
+                   </div>
+               </div>
+               <div class="stopoverDv">
+                   
+               </div>
+               <div class="imgwithDestDv">
+                   <div class="imgDV">
+                       <p>
+                           <img src="style/images/ic_poi_arrival.png"/>
+                       </p>
+                   </div>
+                   <div class="txtDv">
+                       <p>
+                           <input type="text" name="destination" class="txtfld" placeholder="To (specific address)"/>
+                       </p>
+                   </div>
+               </div>
+               <div class="departureDv">
+                   <p class="addStopage">
+                        <a data-role="button" class="addstop" data-click="app.offer.viewModel.addStopOverFld">Add Stop Over </a>
+                   </p>
+               </div>
+           </div>
+           <div class="titleDv">
+               <p>
+                   DATE AND TIME
+               </p>
+           </div>
+           <p>
+               Configures the DOM event used to trigger the button click event/navigate in the mobile application. Can be set to "down" as an alias for touchstart, mousedown, MSPointerDown, and PointerDown vendor specific events. Setting the clickOn to down usually makes sense for buttons in the header or in non-scrollable views for increased responsiveness.
+
+By default, buttons trigger click/navigate when the user taps the button (a press + release action sequence occurs).
+               Configures the DOM event used to trigger the button click event/navigate in the mobile application. Can be set to "down" as an alias for touchstart, mousedown, MSPointerDown, and PointerDown vendor specific events. Setting the clickOn to down usually makes sense for buttons in the header or in non-scrollable views for increased responsiveness.
+
+By default, buttons trigger click/navigate when the user taps the button (a press + release action sequence occurs).
+           </p>
+       </form>
+   </div>
 </div>
+
+<script>
+    function hello()
+    {
+        alert("ok");
+    }
+</script>

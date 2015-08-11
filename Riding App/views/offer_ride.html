@@ -1,0 +1,258 @@
+<div data-role="view" id="offerRideView" data-title="Offer a ride" data-use-native-scrolling="true" data-model="app.offer.viewModel" data-show="app.offer.viewModel.show">
+    <div data-role="content">
+        <form>
+            <div class="mainContent">
+                <div class="titleDiv">
+                    <p>
+                        Vehicle Type
+                    </p>
+                </div>
+                <div class="txtflddiv">
+                    <p>
+                        <select class="selectBx" onchange="myHtmlView(this.value)">
+                            <option value="0">Select any one</option>
+                            <option value="bike">Bike</option>
+                            <option value="bus">Bus</option>
+                            <option value="car">Car</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="biketxtFlddiv">
+                    <div class="titleDiv">
+                        <p>
+                            Add Bike detail
+                        </p>
+                    </div>
+                    <div class="txtflddiv">
+                        <div class="browseImgDiv">
+                            
+                        </div>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Brand</option>
+                                <option value="Hero Honda">Hero Honda</option>
+                                <option value="Royal Enfield">Royal Enfield</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="TVS">TVS</option>
+                                <option value="Suzuki">Suzuki</option>
+                                <option value="Bajaj">Bajaj</option>
+                                <option value="Honda">Honda</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Model</option>
+                                <option value="Hero Honda">Hero Honda</option>
+                                <option value="Royal Enfield">Royal Enfield</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="TVS">TVS</option>
+                                <option value="Suzuki">Suzuki</option>
+                                <option value="Bajaj">Bajaj</option>
+                                <option value="Honda">Honda</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Color</option>
+                                <option value="Hero Honda">Hero Honda</option>
+                                <option value="Royal Enfield">Royal Enfield</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="TVS">TVS</option>
+                                <option value="Suzuki">Suzuki</option>
+                                <option value="Bajaj">Bajaj</option>
+                                <option value="Honda">Honda</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Seat Available</option>
+                                <option value="1">1</option>
+                            </select>
+                        </p>
+                        <p>
+                            <input type="text" name="regnum" id="regnum" class="textfeld" placeholder="Registration number"/>
+                        </p>
+                    </div>
+                    <div class="bikedetailsubmitDv">
+                        <p>
+                            <a data-role="button">Submit</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="bustxtflddiv">
+                    <div class="titleDiv">
+                        <p>
+                            Add Bus detail
+                        </p>
+                    </div>
+                    <div class="txtflddiv">
+                        <div class="browseImgDiv">
+                            
+                        </div>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Type</option>
+                                <option value="Sitting">Sitting</option>
+                                <option value="Sleeper">Sleeper</option>
+                                <option value="Semi Sleeper">Semi Sleeper</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Comfort</option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Star</option>
+                                <option value="3">3 Star</option>
+                                <option value="4">4 Star</option>
+                                <option value="5">5 Star</option>
+                            </select>
+                        </p>
+                        <p style="text-align:left">
+                            <label style="margin-left: 30px;">
+                                <input type="checkbox" name="non_ac" value="NON_AC"/>Non AC
+                            </label>
+                            <label>
+                                <input type="checkbox" name="ac" value="AC"/>AC
+                            </label>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Color</option>
+                                <option value="Hero Honda">Hero Honda</option>
+                                <option value="Royal Enfield">Royal Enfield</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="TVS">TVS</option>
+                                <option value="Suzuki">Suzuki</option>
+                                <option value="Bajaj">Bajaj</option>
+                                <option value="Honda">Honda</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx" id="busSeatAvail">
+                                
+                            </select>
+                        </p>
+                        <p>
+                            <input type="text" name="regnum" id="regnum" class="textfeld" placeholder="Registration number"/>
+                        </p>
+                    </div>
+                    <div class="busdetailsubmitDv">
+                        <p>
+                            <a data-role="button">Submit</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="cartxtflddiv">
+                    <div class="titleDiv">
+                        <p>
+                            Add Car detail
+                        </p>
+                    </div>
+                    <div class="txtflddiv">
+                        <div class="browseImgDiv">
+                            
+                        </div>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Brand</option>
+                                <option value="Sitting">Sitting</option>
+                                <option value="Sleeper">Sleeper</option>
+                                <option value="Semi Sleeper">Semi Sleeper</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Model</option>
+                                <option value="Sitting">Sitting</option>
+                                <option value="Sleeper">Sleeper</option>
+                                <option value="Semi Sleeper">Semi Sleeper</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Comfort</option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Star</option>
+                                <option value="3">3 Star</option>
+                                <option value="4">4 Star</option>
+                                <option value="5">5 Star</option>
+                            </select>
+                        </p>
+                        <p style="text-align:left">
+                            <label style="margin-left: 30px;">
+                                <input type="checkbox" name="non_ac" value="NON_AC"/>Non AC
+                            </label>
+                            <label>
+                                <input type="checkbox" name="ac" value="AC"/>AC
+                            </label>
+                        </p>
+                        <p>
+                            <select class="selectBx" onchange="myHtmlView(this.value)">
+                                <option value="0">Color</option>
+                                <option value="Hero Honda">Hero Honda</option>
+                                <option value="Royal Enfield">Royal Enfield</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="TVS">TVS</option>
+                                <option value="Suzuki">Suzuki</option>
+                                <option value="Bajaj">Bajaj</option>
+                                <option value="Honda">Honda</option>
+                            </select>
+                        </p>
+                        <p>
+                            <select class="selectBx">
+                                <option value="0">Seat Availablity</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </p>
+                        <p>
+                            <input type="text" name="regnum" id="regnum" class="textfeld" placeholder="Registration number"/>
+                        </p>
+                    </div>
+                    <div class="cardetailsubmitDv">
+                        <p>
+                            <a data-role="button">Submit</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function myHtmlView(data)
+    {
+        app.offer.viewModel.getmyHtmlView(data);
+        /*console.log(data);
+        if(data === "bus")
+        {
+            $('.bustxtflddiv').slideDown('slow');
+            $('.biketxtFlddiv').css("display","none");
+            $('.cartxtflddiv').css("display","none");
+        }
+        
+        if(data === "bike")
+        {
+            $('.biketxtFlddiv').slideDown('slow');
+            $('.bustxtflddiv').css("display","none");
+            $('.cartxtflddiv').css("display","none");
+        }
+        
+        if(data === "car")
+        {
+            $('.cartxtflddiv').slideDown('slow');
+            $('.biketxtFlddiv').css("display","none");
+            $('.bustxtflddiv').css("display","none");
+        }
+        
+        if(data === "0" || data === 0)
+        {
+            $('.bustxtflddiv').css("display","none");
+            $('.cartxtflddiv').css("display","none");
+            $('.biketxtFlddiv').css("display","none");
+        }*/
+    }
+</script>

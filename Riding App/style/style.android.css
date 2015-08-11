@@ -38,18 +38,22 @@
 }
 
 @media (min-width:0px) and (max-width:390px) {
+    
+    
+    .photo1 {background: url("./images/onboarding_in_1.jpg") no-repeat;}
+    .photo2 {background: url("./images/onboarding_in_2.jpg") no-repeat;}
+    .photo4 {background: url("./images/onboarding_in_4.jpg") no-repeat;}
+    
+    /*11-8-2015*/
     .nvbar {background:#fff !important}
-    .nvbar a{background-image:url(./images/ic_drawer.png) !important;width: 24px;height: 25px;border:none !important}
-    .nvbar span {}
-    .midDiv {height:515px;background:url(./images/bkgroad.jpg) no-repeat;background-size:100% 100%}
     .nvbar .km-button {background:none}
-    .footer {width:100%;height:50px;background:#fff}
-    .footer .btnDv {width:85%;margin:0px auto}
+    .nvbar a{background-image:url(./images/ic_drawer.png) !important;width: 24px;height: 25px;border:none !important}
+    .btnDv {width:100%;margin:0px auto;height:50px;background-color: #fff;}
     .btnDv a {width:48%;height:45px;line-height: 29px;}
     .btnDv a {border:none !important;background:none !important;color:#1C9CC2 !important;font-size: 17px;}
     .btnDv a:active {border:none !important;background:none !important;color:#1C9CC2 !important;font-size: 17px;}
-    .btnDv a:nth-child(1) {background: url(./images/search.png) no-repeat !important;background-size: 15%!important;background-position: 8px 13px !important;}
-    .btnDv a:nth-child(2) {text-align: right;background: url(./images/offer.png) no-repeat !important;background-size: 15%!important;background-position: 23px 12px !important;}
+    .btnDv a:nth-child(1) {  background: url(./images/search.png) no-repeat !important; background-size: 15%!important;background-position: 18px 12px !important;}
+    .btnDv a:nth-child(2) {text-align: right;background: url(./images/offer.png) no-repeat !important;background-size: 15%!important;background-position: 45px 12px !important;}
     .contentDv p:nth-child(1){width: 55%;font-size: 25px;color: #fff;text-align: center;position: absolute;top: 0px;left: 20%;}
     .contentDv p:nth-child(2){width: 80%;font-size: 18px;font-weight: 400;color: #000;text-align: center;position: absolute;top: 120px;left: 8%;}
     #maindrawer ul li{height: 48px;}
@@ -67,6 +71,56 @@
     #maindrawer .drwersignup span{margin-left: -34px;font-size: 17px;line-height: 27px;}
     #maindrawer .drwerhelp{background: url(./images/drawer_help.png) no-repeat;background-position: 18px 12px;background-size: 22px;text-align: center;}
     #maindrawer .drwerhelp span{margin-left: -34px;font-size: 17px;line-height: 27px;}
+    
+    /****offer a ride****/
+    .departuremainDv {width:100%;height:auto;display: inline-block;}
+    .departureDv{width: 100%;float: left;display: inline-block;margin-top: -20px;}
+    .departureDv .txtfld{width: 100%;height: 35px;border: 1px solid #ccc;border-radius: 5px;}
+    .departureimgDv {width: 12%;float: left;height: 100px;}
+    .departureimgDv p:nth-child(1) {position: absolute;top: -10px;left: 0px;}
+    .departureimgDv p:nth-child(2) {position: absolute;top: 40px;left: 0px;}
+    .departureDv .addStopage {text-align: right;}
+    /*.departureDv .addStopage a {width: 30px;height: 30px;background: url(./images/ic_plus_active.png) no-repeat;background-size: 100% 100%;position: absolute;right: 14px;top: 129px;border: none;}*/
+    .departureDv .addStopage a {width: 150px;height: 40px;color:#000;background: url(./images/ic_plus_active.png) no-repeat;background-size: 17% 55%;background-position: 116px 7px;text-align: left;border: none;}
+    .departureDv .addStopage a:active {color:#000}
+    .titleDv {width:100%;height:40px;background-color:#00B6FF;margin-top:-20px}
+    .titleDv p {line-height: 36px;color:#fff}
+    .removestop {width: 30px;height: 30px;background: url(./images/ic_plus_active.png) no-repeat;background-size: 100% 100%;border: none;}
+    .stopoverDv .txtfld {width: 85%;height: 35px;border: 1px solid #ccc;border-radius: 5px;}
+    
+    .imgwithDv {width:100%;display:inline-block}
+    .imgwithDv .imgDV p {margin-top:10px}
+    .imgwithStopDv {display:inline-block;width:100%;margin-top:-22px}
+    .imgwithStopDv .imgDV p {margin-top:0px}
+    .imgwithDestDv {display:inline-block;width:100%;margin-top: -22px;}
+    .imgwithDestDv .imgDV p {margin-top:0px}
+    .imgDV {width:15%;float:left}
+    .txtDv {width:85%;float:left}
+    .txtDv p .txtfld {width:100%;height:35px;border:1px solid #ccc;border-radius:5px;padding-left:9px;}
+    .imgwithStopDv .txtDv .stoptxtfld {width:96%;height:35px;border:1px solid #ccc;border-radius:5px;padding-left:9px;}
+    .imgwithStopDv .txtDv {width:80%;float:left}
+    .imgwithStopDv .cancelBtn {width: 5%;float: left;margin-top: 20px;margin-left: -19px;}
+    
+    /**/
+    .titleDiv {width:100%;height:48px;background-color:#00B6FF}
+    .titleDiv p {margin-top: 0px;line-height: 43px;color: #fff;font-size: 19px;font-family: times;font-weight: 300;}
+    .txtflddiv {width:100%;height:auto}
+    .txtflddiv p {text-align:center}
+    .txtflddiv p .selectBx {width:80%;height:35px;}
+    .mainContent .biketxtFlddiv {display:none;width:100%;margin:0px auto;height:auto}
+    .biketxtFlddiv .titleDiv {background-color:#ccc;height:40px;}
+    .biketxtFlddiv .titleDiv p {margin-top: 0px;line-height: 42px;color: #000;font-size: 16px;font-family: times;font-weight: 300;}
+    .mainContent .bustxtflddiv {display:none}
+    .mainContent .cartxtflddiv {display:none}
+    .txtflddiv .textfeld {width: 80%;height: 35px;border: 1px solid #ccc;border-radius: 5px;padding-left:8px}
+    .browseImgDiv {width: 29%;margin: 0px auto;border: 1px solid #ccc;height: 100px;border-radius: 50%;margin-top: 18px;background:url(./images/profile.png) no-repeat;background-size:100%;background-position:0px 0px}
+    .bikedetailsubmitDv,.busdetailsubmitDv,.cardetailsubmitDv {width: 100%;}
+    .bikedetailsubmitDv p,.busdetailsubmitDv p,.cardetailsubmitDv p {text-align:center}
+    .bikedetailsubmitDv p a,.busdetailsubmitDv p a,.cardetailsubmitDv p a {width: 80%;height: 40px;font-size: 20px;line-height: 18px;font-weight: 500;font-family: times;}
+    .bustxtflddiv .titleDiv {background-color:#ccc;height:40px;}
+    .bustxtflddiv .titleDiv p {margin-top: 0px;line-height: 42px;color: #000;font-size: 16px;font-family: times;font-weight: 300;}
+    .cartxtflddiv .titleDiv {background-color:#ccc;height:40px;}
+    .cartxtflddiv .titleDiv p {margin-top: 0px;line-height: 42px;color: #000;font-size: 16px;font-family: times;font-weight: 300;}
 }
 
 @media (min-width:0px) and (max-width:370px) {

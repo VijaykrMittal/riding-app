@@ -1,2 +1,5 @@
-body {
-}
+#homeView .km-content {background:url(./images/bkgroad.jpg) no-repeat;background-size:100% 100%}
+/*#offerRideView .km-content {background-color:#FFF}*/
+
+.img p{  margin-top: 0px;}
+

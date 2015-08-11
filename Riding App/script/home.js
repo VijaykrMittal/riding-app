@@ -6,8 +6,7 @@
         
         show: function()
         {
-            //alert("ok");
-            $(".midDiv").css('height',$(window).height()-98);
+            //$("#homeView .km-content").css('height',$(window).height()-98);
         },
         offerRide:function()
         {
