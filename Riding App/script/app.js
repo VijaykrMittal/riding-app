@@ -9,7 +9,7 @@ var app = (function(global){
                                                                 {
                                                                     skin:'flat',
                                                                     layout:'main-layout',
-                                                                    initial:'views/offer_ride.html'
+                                                                    initial:'views/home.html'
                                                                 }
     );
     

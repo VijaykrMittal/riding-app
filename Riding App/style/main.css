@@ -1,5 +1,14 @@
 #homeView .km-content {background:url(./images/bkgroad.jpg) no-repeat;background-size:100% 100%}
+#rideOfferView .km-content {background:#FFF;}
+#rideOfferView2 .km-content {background:#FFF;}
 /*#offerRideView .km-content {background-color:#FFF}*/
 
 .img p{  margin-top: 0px;}
+
+.carPassenger {display:none}
+.bikePassenger {display:none}
+.roundTrip .km-switch {float:right}
+.returnDiv {display:none}
+.carPassenger .gender {display:none}
+select {background:#FFF}
 

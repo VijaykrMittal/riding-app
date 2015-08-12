@@ -1,0 +1,192 @@
+<div data-role="view" id="rideOfferView" data-title="Offer a ride" data-model="app.offer.viewModel" data-show="app.offer.viewModel.show">
+    <div data-role="content">
+        <form id="stepFstForm">
+            <div class="step1Div">
+                <p>
+                    <label class="textTtle">Vehicle Type</label>
+                </p>
+                <p>
+                    <select class="selectbx" onchange="myHtmlView(this.value)" data-bind="value:vehicle">
+                        <option value="0">Select any one</option>
+                        <option value="bike">Bike</option>
+                        <option value="bus">Bus</option>
+                        <option value="car">Car</option>
+                    </select>
+                </p>
+                <p>
+                    <label class="textTtle">No. of Seats</label>
+                </p>
+                <p>
+                    <select class="selectbx" id="seatAvailable" data-bind="value:seatavailable">
+                       <option value="0">Seat Availablity</option>
+                    </select>
+                </p>
+            </div>
+        </form>
+        <div class="stepFstsubmitDiv">
+            <p> 
+                <a data-role="button" data-click="app.offer.viewModel.stepFstContinue">Continue</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myHtmlView(data)
+    {   
+        app.offer.viewModel.seatAvailablity(data);
+    }
+</script>
+
+<div data-role="view" id="rideOfferView2" data-use-native-scrolling="true">
+    <div data-role="content">
+       <form id="stepScondForm">
+           <div class="departuremainDv">
+               <div class="headerTitleDv">
+                    <p>
+                        <label class="textTtle">Departure</label>
+                    </p>
+               </div>
+               <div class="imgwithDv">
+                   <div class="imgDV">
+                       <p>
+                           <img src="style/images/ic_poi_departure.png"/>
+                       </p>
+                   </div>
+                   <div class="txtDv">
+                       <p>
+                           <input type="text" name="source" class="txtfld" placeholder="From (specific address)"/>
+                       </p>
+                   </div>
+               </div>
+               <div class="stopoverDv">
+               </div>
+               <div class="imgwithDestDv">
+                   <div class="imgDV">
+                       <p>
+                           <img src="style/images/ic_poi_arrival.png"/>
+                       </p>
+                   </div>
+                   <div class="txtDv">
+                       <p>
+                           <input type="text" name="destination" class="txtfld" placeholder="To (specific address)"/>
+                       </p>
+                   </div>
+               </div>
+               <div class="departureDv">
+                   <p class="addStopage">
+                       <label>Add More Stop </label>
+                       <img id="addStop" src="style/images/ic_plus_active.png"/>
+                       
+                   </p>
+               </div>
+           </div>
+           <div class="carPassenger">
+                <div class="headerTitleDv">
+                    <p>
+                        <label class="textTtle">Going with</label>
+                    </p>
+                </div>   
+                <p>
+                    <select class="selectbx">
+                        <option value="0">Select any one</option>
+                        <option value="Alone">Alone</option>
+                        <option value="Family">Family</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </p>
+                <div class="headerTitleDv">
+                    <p>
+                        <label class="textTtle">Passenger Preference</label>
+                    </p>
+                </div>
+                <p>
+                    <select class="selectbx" onchange="myPreference(this.value)">
+                        <option value="0">Select any one</option>
+                        <option value="Couple">Couple</option>
+                        <option value="Indivisual">Indivisual</option>
+                        <option value="Any">Any</option>
+                    </select>
+                </p>
+                <p class="gender">
+                    <label><input type="radio" name="gender" value="male"/>Male</label>
+                    <label><input type="radio" name="gender" value="female"/>Female</label>
+                </p>
+           </div>
+           <div class="bikePassenger">
+               <div class="headerTitleDv">
+                   <p>
+                        <label class="textTtle">Passenger Preference</label>
+                   </p>
+               </div>    
+               <p>
+                    <label><input type="radio" name="gender" value="male"/>Male</label>
+                    <label><input type="radio" name="gender" value="female"/>Female</label>
+               </p>
+           </div>
+           <div class="ridingDetail">
+               <div class="headerTitleDv">
+                   <p>
+                        <label class="textTtle">Type of Ride</label>
+                   </p>
+               </div>
+               <p class="roundTrip">
+                   <label>Round Trip</label><input type="checkbox" id="switch" data-role="switch" data-checked="true" data-change="app.offer.viewModel.onChange"/>
+               </p>
+               <div class="departureDiv">
+                    <p>
+                        <label class="textTtle">Departure</label>
+                    </p>
+                    <p>
+                        <input id="departdatepicker"/>
+                    </p>
+                    <p>
+                        <input id="departtimepicker"/>
+                    </p>
+               </div>
+               <div class="returnDiv">
+                    <p>
+                        <label class="textTtle">Return</label>
+                    </p>
+                    <p>
+                        <input id="returndatepicker"/>
+                    </p>
+                    <p>
+                        <input id="returntimepicker"/>
+                    </p>
+               </div>
+               <div class="headerTitleDv">
+                   <p>
+                        <label class="textTtle">Describe about your trip</label>
+                   </p>
+               </div>
+               <p>
+                   <textarea class="tripDesp" placeholder="Description about your trip with minimum 50 words."></textarea>
+               </p>
+           </div>
+            <div class="stepScondsubmitDiv">
+                <p> 
+                    <a data-role="backbutton">Back</a>
+                    <a data-role="button" data-click="app.offer.viewModel.stepScondContinue">Continue</a>
+                </p>
+            </div>
+       </form>
+    </div>
+</div>
+
+<script>
+    function myPreference(data)
+    {
+        console.log(data);
+        
+        if(data === "Indivisual")
+        {
+            $('.carPassenger .gender').css('display','block');
+        }
+        else
+        {
+            $('.carPassenger .gender').css('display','none');
+        }
+    }
+</script>
