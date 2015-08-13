@@ -143,8 +143,8 @@
     .imgwithDestDv .imgDV p {margin-top:0px}
     .departureDv{width: 100%;float: left;display: inline-block;margin-top: -20px;}
     .departureDv .txtfld{width: 100%;height: 35px;border: 1px solid #ccc;border-radius: 5px;}
-    .departureDv .addStopage {float: right;padding: 0;margin: 19px;}
-    .addStopage label{float: left;margin-right: 10px;}
+    .departureDv .addStopage {float: right;padding: 0;margin: 19px;width:40%}
+    .addStopage label{float: left;margin-right: 15px;}
     .addStopage {margin-top: 0px;}
     .departureDv .addStopage a {width: 150px;height: 40px;color:#000;background: url(./images/ic_plus_active.png) no-repeat;background-size: 17% 55%;background-position: 116px 7px;text-align: left;border: none;}
     .departureDv .addStopage a:active {color:#000}

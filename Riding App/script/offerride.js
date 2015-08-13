@@ -5,9 +5,17 @@
     var offerBindingValue;
     offerViewModel = kendo.data.ObservableObject.extend({
         
+        
         show: function()
         {   
-            alert("show");
+            $('#source').click(function(){
+                app.offer.viewModel.sourceGoogleMap($(this).attr('id'));
+            });
+            
+            $('#destination').click(function(){
+                app.offer.viewModel.destinationGoogleMap($(this).attr('id'));
+            });
+            
             $('#seatAvailable').attr('disabled',true);
             $('#seatAvailable').val("0");
             
@@ -22,12 +30,30 @@
             {
                 count = 0;
             }
+            
             $('#addStop').on('click',function()
             {
                 app.offer.viewModel.addStopOverFld(++count);
+                sessionStorage.setItem('stopage',count);
+                
+                $('#stopage'+count).click(function(){
+                    alert($(this).attr('id'));
+                    app.offer.viewModel.stopageGoogleMap($(this).attr('id'));
+                });
+                
                 $('.remove'+count).on('click',function(){
+                   $('.removeDV'+count).remove();
+                    count--;
+                    sessionStorage.setItem('stopage',count);
+                    if(sessionStorage.getItem('stopage')<5)
+                    {
+                        $("#deleteStop").css("display","none");
+                        $('#addStop').css("display","block" );
+                    }
                 });
             });
+            
+            
             
             $('.returnDiv').css('display','block');
             
@@ -66,25 +92,57 @@
                 value:"Select Return time"
             });
         },
+        sourceGoogleMap : function(myId)
+        {
+            var input = document.getElementById(myId);
+            var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
+            google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+                alert('source lat ='+place.geometry.location.lat());
+                alert('source long ='+place.geometry.location.lng());
+            });
+        },
+        
+        stopageGoogleMap : function(myId,num)
+        {
+            var input = document.getElementById(myId);
+            var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
+            google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+                alert(myId+' lat ='+place.geometry.location.lat());
+                alert(myId+' long ='+place.geometry.location.lng());
+            });
+        },
+        
+        destinationGoogleMap : function(myId)
+        {
+            var input = document.getElementById(myId);
+            var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
+            google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+                alert('destination lat ='+place.geometry.location.lat());
+                alert('destination long ='+place.geometry.location.lng());
+            });
+        },
         
         addStopOverFld : function(count)
         {
-            //console.log(count);
             if(count === 5)
-            {
-                //$('#addStop').css("display","none" );
+            {   
+                $('#addStop').css("display","none" );
+                $('#deleteStop').css("display","block" );
                 //$('.disabledCls').css("display",'block');
-                $("#addStop").off("click");
-                $("#addStop").attr("src",'style/images/ic_plus_disabled.png');
+                //$("#addStop").off("click");
+               // $("#addStop").attr("src",'style/images/ic_plus_disabled.png');
             }
             html = '';
-            html ='<div class="removeDv'+count+'">';
+            html ='<div class="removeDV'+count+'">';
             html += '<div class="imgwithStopDv">';
             html +='<div class="imgDV">';
             html += '<p><img src="style/images/ic_poi_stopover.png"/></p>';
             html +='</div>';
             html +='<div class="txtDv">';
-            html +='<p><input type="text"  name="addstop'+count+'" id="addstop'+count+'" class="stoptxtfld" placeholder="Add stop place '+count+'"/></p>';
+            html +='<p><input type="text"  name="stopage'+count+'" id="stopage'+count+'" class="stoptxtfld" placeholder="Add stop place '+count+'"/></p>';
             html +='</div>';
             html +='<div class="cancelBtn">';
             html +='<img src="style/images/ic_minus.png" class="remove'+count+'" width="20px" height="20px"/>';

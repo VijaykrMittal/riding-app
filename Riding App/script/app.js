@@ -2,6 +2,7 @@ var app = (function(global){
     
     var onDeviceReady = function()
     {
+        
     };
     
     document.addEventListener("deviceready",onDeviceReady,false);
