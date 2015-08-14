@@ -8,6 +8,7 @@
         
         show: function()
         {   
+            $("#calendar").kendoCalendar();
             $('#source').click(function(){
                 app.offer.viewModel.sourceGoogleMap($(this).attr('id'));
             });
@@ -58,30 +59,10 @@
             $('.returnDiv').css('display','block');
             
             $("#departdatepicker").kendoDatePicker({
-                animation: {
-                    close: {
-                        effects: "fadeOut zoom:out",
-                        duration: 300
-                    },
-                    open: {
-                        effects: "fadeIn zoom:in",
-                        duration: 300
-                    }
-                },
                 min: new Date(),
                 value:"Select Departure date"
             });
             $("#returndatepicker").kendoDatePicker({
-                animation: {
-                    close: {
-                        effects: "fadeOut zoom:out",
-                        duration: 300
-                    },
-                    open: {
-                        effects: "fadeIn zoom:in",
-                        duration: 300
-                    }
-                },
                 min: new Date(),
                 value:"Select Return date"
             });
