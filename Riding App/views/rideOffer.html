@@ -55,7 +55,7 @@
                    </div>
                    <div class="txtDv">
                        <p>
-                           <input type="text" id="source" data-bind="value:source" name="source" class="txtfld" placeholder="From (specific address)"/>
+                           <input type="text" id="source" name="source" class="txtfld" placeholder="From (specific address)"/>
                        </p>
                    </div>
                </div>
@@ -69,7 +69,7 @@
                    </div>
                    <div class="txtDv">
                        <p>
-                           <input type="text" id="destination" data-bind="value:destination" name="destination" class="txtfld" placeholder="To (specific address)"/>
+                           <input type="text" id="destination" name="destination" class="txtfld" placeholder="To (specific address)"/>
                        </p>
                    </div>
                </div>
@@ -89,7 +89,7 @@
                     </p>
                 </div>   
                 <p>
-                    <select class="selectbx" data-bind="value:goingwith">
+                    <select class="selectbx">
                         <option value="0">Select any one</option>
                         <option value="Alone">Alone</option>
                         <option value="Family">Family</option>
@@ -103,7 +103,7 @@
                     </p>
                 </div>
                 <p>
-                    <select class="selectbx" onchange="myPreference(this.value)" data-bind="value:passengerPref">
+                    <select class="selectbx" onchange="myPreference(this.value)">
                         <option value="0">Select any one</option>
                         <option value="Couple">Couple</option>
                         <option value="Indivisual">Indivisual</option>
@@ -111,8 +111,8 @@
                     </select>
                 </p>
                 <p class="gender">
-                    <label><input type="radio" name="gender" data-bind="value:maleByCar" value="male"/>Male</label>
-                    <label><input type="radio" name="gender" data-bind="value:femaleByCar" value="female"/>Female</label>
+                    <label><input type="radio" name="gender" value="male"/>Male</label>
+                    <label><input type="radio" name="gender" value="female"/>Female</label>
                 </p>
            </div>
            <div class="bikePassenger">
@@ -122,8 +122,8 @@
                    </p>
                </div>    
                <p>
-                    <label><input type="radio" name="gender" data-bind="value:male" value="male"/>Male</label>
-                    <label><input type="radio" name="gender" data-bind="value:female" value="female"/>Female</label>
+                    <label><input type="radio" name="gender" value="male"/>Male</label>
+                    <label><input type="radio" name="gender" value="female"/>Female</label>
                </p>
            </div>
            <div class="ridingDetail">
@@ -133,7 +133,7 @@
                    </p>
                </div>
                <p class="roundTrip">
-                   <label>Round Trip</label><input type="checkbox" id="switch" data-role="switch" data-checked="true" data-bind="value:roundtrip" data-change="app.offer.viewModel.onChange"/>
+                   <label>Round Trip</label><input type="checkbox" id="switch" data-role="switch" data-checked="true" data-change="app.offer.viewModel.onChange"/>
                </p>
                <div class="departureDiv">
                     <p>

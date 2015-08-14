@@ -18,7 +18,7 @@
             });
             
             $('#seatAvailable').attr('disabled',true);
-            $('#seatAvailable').val("0");
+            $('#seatAvailable').val(0);
             
             offerBindingValue = kendo.observable({
                 seatavailable:'0',
