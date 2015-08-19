@@ -2,13 +2,11 @@
     var offerViewModel,
         app = global.app = global.app || {};
     
-    var offerBindingValue;
+    var offerBindingValue,offerBindingStep2;
     offerViewModel = kendo.data.ObservableObject.extend({
         
-        
         show: function()
-        {   
-            $("#calendar").kendoCalendar();
+        {  
             $('#source').click(function(){
                 app.offer.viewModel.sourceGoogleMap($(this).attr('id'));
             });
@@ -25,6 +23,12 @@
                 vehicle:'0',
             });
             kendo.bind($('#stepFstForm'), offerBindingValue);
+            
+            offerBindingStep2 = kendo.observable({
+                source:'',
+                destination:'',
+            });
+            kendo.bind($('#stepScondForm'), offerBindingStep2);
             
             $('#addStop').unbind();
             if(typeof count === 'undefined')
@@ -54,8 +58,6 @@
                 });
             });
             
-            
-            
             $('.returnDiv').css('display','block');
             
             $("#departdatepicker").kendoDatePicker({
@@ -73,14 +75,21 @@
                 value:"Select Return time"
             });
         },
+        
         sourceGoogleMap : function(myId)
         {
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                var place = autocomplete.getPlace();
-                alert('source lat ='+place.geometry.location.lat());
-                alert('source long ='+place.geometry.location.lng());
+                var source = autocomplete.getPlace();
+                console.log(source);
+                console.log(autocomplete);
+                //$('#source').val(place['formatted_address']);
+                offerBindingStep2.source = source['formatted_address'];
+                sessionStorage.setItem('source_lat',source.geometry.location.lat());
+                sessionStorage.setItem('source_long',source.geometry.location.lng());
+               // alert('source lat ='+place.geometry.location.lat());
+               // alert('source long ='+place.geometry.location.lng());
             });
         },
         
@@ -100,9 +109,12 @@
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                var place = autocomplete.getPlace();
-                alert('destination lat ='+place.geometry.location.lat());
-                alert('destination long ='+place.geometry.location.lng());
+                var destination = autocomplete.getPlace();
+                offerBindingStep2.destination = destination['formatted_address'];
+                sessionStorage.setItem('destination_lat',destination.geometry.location.lat());
+                sessionStorage.setItem('destination_long',destination.geometry.location.lng());
+                //alert('destination lat ='+place.geometry.location.lat());
+                //alert('destination long ='+place.geometry.location.lng());
             });
         },
         
@@ -211,9 +223,33 @@
             }
         },
         
+        calculateDistance :function()
+        {
+            var R = 6371; // Radius of the earth in km
+            var dLat = app.offer.viewModel.degToRed(sessionStorage.getItem('source_lat') - sessionStorage.getItem('destination_lat'));  // deg2rad below sessionStorage.getItem('source_lat');
+            var dLon = app.offer.viewModel.degToRed(sessionStorage.getItem('source_long')-sessionStorage.getItem('destination_long')); 
+            var a = 
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(app.offer.viewModel.degToRed(sessionStorage.getItem('source_lat'))) * Math.cos(app.offer.viewModel.degToRed(sessionStorage.getItem('destination_lat'))) * 
+            Math.sin(dLon/2) * Math.sin(dLon/2)
+            ; 
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            var d = R * c; // Distance in km
+            //return d;  
+            
+            console.log(d);
+        },
+        
+        degToRed : function(deg)
+        {
+            return deg * (Math.PI/180)
+        },
+        
         stepScondContinue:function()
         {
-            alert("ok");
+            console.log(offerBindingStep2.source);
+            console.log(offerBindingStep2.destination);
+            app.offer.viewModel.calculateDistance();
         }
     });
     
