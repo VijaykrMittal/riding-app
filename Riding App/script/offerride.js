@@ -3,10 +3,24 @@
         app = global.app = global.app || {};
     
     var offerBindingValue,offerBindingStep2;
-    offerViewModel = kendo.data.ObservableObject.extend({
-        
+        offerViewModel = kendo.data.ObservableObject.extend({
+            
         show: function()
         {  
+            var dfthtml = '<option value="0">Seat Availablity</option>';
+            $('#seatAvailable').html(dfthtml);
+            $('#seatAvailable').attr('disabled',true);
+            
+            /*observable binding*/
+            offerBindingValue = kendo.observable({
+                seatavailable:'0',
+                vehicle:'0',
+            });
+            kendo.bind($('#stepFstForm'), offerBindingValue);
+        },
+            
+        rideOfferView2Show  :function()
+        {
             $('#source').click(function(){
                 app.offer.viewModel.sourceGoogleMap($(this).attr('id'));
             });
@@ -15,14 +29,12 @@
                 app.offer.viewModel.destinationGoogleMap($(this).attr('id'));
             });
             
-            $('#seatAvailable').attr('disabled',true);
-            $('#seatAvailable').val(0);
+            if(typeof viewFModel === 'undefined')
+            {
+                viewFModel = kendo.observable();
+            }
             
-            offerBindingValue = kendo.observable({
-                seatavailable:'0',
-                vehicle:'0',
-            });
-            kendo.bind($('#stepFstForm'), offerBindingValue);
+            
             
             offerBindingStep2 = kendo.observable({
                 source:'',
@@ -36,19 +48,32 @@
                 count = 0;
             }
             
+            //$('.removeDV1,.removeDV2,.removeDV3,.removeDV4,.removeDV5').css("display",'none');
+            
             $('#addStop').on('click',function()
             {
-                app.offer.viewModel.addStopOverFld(++count);
+                count = count+1;
+                if(count === 5)
+                {   
+                    $('#addStop').css("display","none" );
+                    $('#deleteStop').css("display","block" );
+                    //$('.disabledCls').css("display",'block');
+                    //$("#addStop").off("click");
+                   // $("#addStop").attr("src",'style/images/ic_plus_disabled.png');
+                }
                 sessionStorage.setItem('stopage',count);
+                $('.removeDV'+count).css('display','block');
                 
                 $('#stopage'+count).click(function(){
-                    alert($(this).attr('id'));
                     app.offer.viewModel.stopageGoogleMap($(this).attr('id'));
                 });
                 
+                $('.remove'+count).unbind();
                 $('.remove'+count).on('click',function(){
-                   $('.removeDV'+count).remove();
-                    count--;
+                    $('.removeDV'+count).css('display','none');
+                    
+                    console.log('minus '+count);
+                    count = count-1;
                     sessionStorage.setItem('stopage',count);
                     if(sessionStorage.getItem('stopage')<5)
                     {
@@ -75,21 +100,41 @@
                 value:"Select Return time"
             });
         },
-        
+
+        addDynVar :function(num)
+        {
+            viewFModel['stopage'+num] ='';
+        },
+            
+        deleteDynVar:function(num)
+        {
+            delete viewFModel['stopage'+num];
+        },
+    
         sourceGoogleMap : function(myId)
         {
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var source = autocomplete.getPlace();
-                console.log(source);
-                console.log(autocomplete);
-                //$('#source').val(place['formatted_address']);
+                
+                for(var x in source['address_components'])
+                {
+                    if($.isNumeric)
+                    {
+                        if(source['address_components'][x]['types'][x] === 'locality')
+                        {
+                            sessionStorage.setItem('source_locality',source['address_components'][x]['long_name']);
+                        }
+                    }
+                }
+                
                 offerBindingStep2.source = source['formatted_address'];
                 sessionStorage.setItem('source_lat',source.geometry.location.lat());
                 sessionStorage.setItem('source_long',source.geometry.location.lng());
-               // alert('source lat ='+place.geometry.location.lat());
-               // alert('source long ='+place.geometry.location.lng());
+                console.log(sessionStorage.getItem('source_lat'));
+                console.log(sessionStorage.getItem('source_long'));
+                console.log(offerBindingStep2.source);
             });
         },
         
@@ -98,9 +143,24 @@
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                var place = autocomplete.getPlace();
-                alert(myId+' lat ='+place.geometry.location.lat());
-                alert(myId+' long ='+place.geometry.location.lng());
+                var stopage = autocomplete.getPlace();
+                
+                for(var x in stopage['address_components'])
+                {
+                    if($.isNumeric)
+                    {
+                        if(stopage['address_components'][x]['types'][0] === 'locality' || stopage['address_components'][x]['types'][1] === 'locality')
+                        {
+                            sessionStorage.setItem(myId,stopage['address_components'][x]['long_name']);
+                        }
+                    }
+                }
+                offerBindingStep2.myId = stopage['formatted_address'];
+                sessionStorage.setItem(myId+'_lat',stopage.geometry.location.lat());
+                sessionStorage.setItem(myId+'_long',stopage.geometry.location.lng());
+                console.log(sessionStorage.getItem(myId+'_lat'));
+                console.log(sessionStorage.getItem(myId+'_long'));
+                console.log(offerBindingStep2.myId);
             });
         },
         
@@ -110,11 +170,24 @@
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var destination = autocomplete.getPlace();
+                
+                for(var x in destination['address_components'])
+                {
+                    if($.isNumeric)
+                    {
+                        if(destination['address_components'][x]['types'][x] === 'locality')
+                        {
+                            sessionStorage.setItem('Destination_locality',destination['address_components'][x]['long_name']);
+                        }
+                    }
+                }
+                
                 offerBindingStep2.destination = destination['formatted_address'];
                 sessionStorage.setItem('destination_lat',destination.geometry.location.lat());
                 sessionStorage.setItem('destination_long',destination.geometry.location.lng());
-                //alert('destination lat ='+place.geometry.location.lat());
-                //alert('destination long ='+place.geometry.location.lng());
+                console.log(sessionStorage.getItem('destination_lat'));
+                console.log(sessionStorage.getItem('destination_long'));
+                console.log(offerBindingStep2.destination);
             });
         },
         
@@ -134,8 +207,8 @@
             html +='<div class="imgDV">';
             html += '<p><img src="style/images/ic_poi_stopover.png"/></p>';
             html +='</div>';
-            html +='<div class="txtDv">';
-            html +='<p><input type="text"  name="stopage'+count+'" id="stopage'+count+'" class="stoptxtfld" placeholder="Add stop place '+count+'"/></p>';
+            html +='<div id="stopageDv'+count+'" class="txtDv">';
+            html +='<p><input type="text" data-bind="value:stopage'+count+'"  name="stopage'+count+'" id="stopage'+count+'" class="stoptxtfld" placeholder="Add stop place '+count+'"/></p>';
             html +='</div>';
             html +='<div class="cancelBtn">';
             html +='<img src="style/images/ic_minus.png" class="remove'+count+'" width="20px" height="20px"/>';
@@ -247,10 +320,18 @@
         
         stepScondContinue:function()
         {
+           /* console.log(offerBindingStep2.source);
+            console.log(offerBindingStep2.destination);
+            app.offer.viewModel.calculateDistance();*/
             console.log(offerBindingStep2.source);
             console.log(offerBindingStep2.destination);
-            app.offer.viewModel.calculateDistance();
-        }
+            console.log("stopage1 "+$('#stopage1').val());
+            console.log("stopage2 "+offerBindingStep2.stopage2);
+            console.log("stopage3 "+offerBindingStep2.stopage3);
+            console.log("stopage4 "+offerBindingStep2.stopage4);
+            console.log("stopage5 "+offerBindingStep2.stopage5);
+        },
+            
     });
     
     app.offer = {

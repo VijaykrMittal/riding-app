@@ -1,3 +1,4 @@
+<!--STEP 1-->
 <div data-role="view" id="rideOfferView" data-title="Offer a ride" data-model="app.offer.viewModel" data-show="app.offer.viewModel.show">
     <div data-role="content">
         <form id="stepFstForm">
@@ -18,7 +19,6 @@
                 </p>
                 <p>
                     <select class="selectbx" id="seatAvailable" data-bind="value:seatavailable">
-                       <option value="0">Seat Availablity</option>
                     </select>
                 </p>
             </div>
@@ -38,7 +38,8 @@
     }
 </script>
 
-<div data-role="view" id="rideOfferView2" data-use-native-scrolling="true" data-model="app.offer.viewModel" data-show="app.offer.viewModel.show">
+<!--STEP 2-->
+<div data-role="view" id="rideOfferView2" data-use-native-scrolling="true" data-model="app.offer.viewModel" data-show="app.offer.viewModel.rideOfferView2Show">
     <div data-role="content">
        <form id="stepScondForm">
            <div class="departuremainDv">
@@ -60,6 +61,71 @@
                    </div>
                </div>
                <div class="stopoverDv">
+                   <div class="removeDV1">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv1" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage1"  name="stopage1" id="stopage1" class="stoptxtfld" placeholder="Add stop place 1"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove1" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV2">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv2" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage2"  name="stopage2" id="stopage2" class="stoptxtfld" placeholder="Add stop place 2"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove2" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV3">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv3" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage3"  name="stopage3" id="stopage3" class="stoptxtfld" placeholder="Add stop place 3"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove3" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV4">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv4" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage4"  name="stopage4" id="stopage4" class="stoptxtfld" placeholder="Add stop place 4"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove4" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV5">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv5" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage5"  name="stopage5" id="stopage5" class="stoptxtfld" placeholder="Add stop place 5"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove5" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
                </div>
                <div class="imgwithDestDv">
                    <div class="imgDV">
