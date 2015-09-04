@@ -7,7 +7,7 @@
                     <label class="textTtle">Vehicle Type</label>
                 </p>
                 <p>
-                    <select class="selectbx" onchange="myHtmlView(this.value)" data-bind="value:vehicle">
+                    <select class="selectbx" id="vehicleType" onchange="myHtmlView(this.value)" data-bind="value:vehicle">
                         <option value="0">Select any one</option>
                         <option value="bike">Bike</option>
                         <option value="bus">Bus</option>
@@ -25,7 +25,7 @@
         </form>
         <div class="stepFstsubmitDiv">
             <p> 
-                <a data-role="button" data-click="app.offer.viewModel.stepFstContinue">Continue</a>
+                <a data-role="button" data-bind="click:stepFstContinue">Continue</a>
             </p>
         </div>
     </div>
@@ -33,7 +33,7 @@
 
 <script>
     function myHtmlView(data)
-    {   
+    { 
         app.offer.viewModel.seatAvailablity(data);
     }
 </script>
@@ -155,7 +155,7 @@
                     </p>
                 </div>   
                 <p>
-                    <select class="selectbx">
+                    <select class="selectbx" onchange="goingWith(this.value)">
                         <option value="0">Select any one</option>
                         <option value="Alone">Alone</option>
                         <option value="Family">Family</option>
@@ -177,8 +177,8 @@
                     </select>
                 </p>
                 <p class="gender">
-                    <label><input type="radio" name="gender" value="male"/>Male</label>
-                    <label><input type="radio" name="gender" value="female"/>Female</label>
+                    <label><input type="radio" class="carGender" name="gender" id="gendermale_car" data-bind="checked:gendermale_car" value="male"/>Male</label>
+                    <label><input type="radio" class="carGender" name="gender" id="genderfemale_car" data-bind="checked:genderfemale_car" value="female"/>Female</label>
                 </p>
            </div>
            <div class="bikePassenger">
@@ -188,8 +188,8 @@
                    </p>
                </div>    
                <p>
-                    <label><input type="radio" name="gender" value="male"/>Male</label>
-                    <label><input type="radio" name="gender" value="female"/>Female</label>
+                    <label><input type="radio" class="gender" data-bind="checked:gendermale" name="gender" value="male"/>Male</label>
+                    <label><input type="radio" class="gender" name="gender" data-bind="checked:genderfemale" value="female"/>Female</label>
                </p>
            </div>
            <div class="ridingDetail">
@@ -229,13 +229,13 @@
                    </p>
                </div>
                <p>
-                   <textarea class="tripDesp" placeholder="Description about your trip with minimum 50 words."></textarea>
+                   <textarea class="tripDesp" data-bind="value:description" placeholder="Description about your trip with minimum 50 words."></textarea>
                </p>
            </div>
             <div class="stepScondsubmitDiv">
                 <p> 
                     <a data-role="backbutton">Back</a>
-                    <a data-role="button" data-click="app.offer.viewModel.stepScondContinue">Continue</a>
+                    <a data-role="button" data-bind="click:stepScondContinue">Continue</a>
                 </p>
             </div>
        </form>
@@ -246,6 +246,7 @@
     function myPreference(data)
     {
         console.log(data);
+        app.offer.viewModel.carPreference=data;
         
         if(data === "Indivisual")
         {
@@ -254,6 +255,14 @@
         else
         {
             $('.carPassenger .gender').css('display','none');
+            $("#gendermale_car").attr('checked',false);
+            $("#genderfemale_car").attr('checked',false);
         }
+    }
+    
+    function goingWith(data)
+    {
+         console.log(data);
+        app.offer.viewModel.carGoingWith=data;
     }
 </script>

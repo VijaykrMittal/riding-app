@@ -4,19 +4,35 @@
     
     var offerBindingValue,offerBindingStep2;
         offerViewModel = kendo.data.ObservableObject.extend({
+         
+        vehicle:'',    
+        seatavailable:'',
+        source:'',
+        destination:'', 
+            
+        carPreference:'',    
+        carGoingWith:'',
+        typeOfRide:'',
+        departureDate:'',
+        departureTime:'',
+        returnDate:'',
+        returnTime:'',
+        vehicleType:'',    
+            
             
         show: function()
         {  
             var dfthtml = '<option value="0">Seat Availablity</option>';
             $('#seatAvailable').html(dfthtml);
             $('#seatAvailable').attr('disabled',true);
+            $('#vehicleType').val(0);
             
             /*observable binding*/
-            offerBindingValue = kendo.observable({
+            /*offerBindingValue = kendo.observable({
                 seatavailable:'0',
                 vehicle:'0',
             });
-            kendo.bind($('#stepFstForm'), offerBindingValue);
+            kendo.bind($('#stepFstForm'), offerBindingValue);*/
         },
             
         rideOfferView2Show  :function()
@@ -34,13 +50,16 @@
                 viewFModel = kendo.observable();
             }
             
-            
-            
-            offerBindingStep2 = kendo.observable({
+            /*offerBindingStep2 = kendo.observable({
                 source:'',
                 destination:'',
+                gendermale:false,
+                genderfemale:false,
+                gendermale_car:false,
+                genderfemale_car:false,
+                description:'',
             });
-            kendo.bind($('#stepScondForm'), offerBindingStep2);
+            kendo.bind($('#stepScondForm'), offerBindingStep2);*/
             
             $('#addStop').unbind();
             if(typeof count === 'undefined')
@@ -87,28 +106,32 @@
             
             $("#departdatepicker").kendoDatePicker({
                 min: new Date(),
-                value:"Select Departure date"
+                value:"Select Departure date",
+                format: "dd/MM/yyyy" ,
+                change: function(e) {
+                    app.offer.viewModel.departureDate = e['sender']['_oldText'];
+                }
             });
             $("#returndatepicker").kendoDatePicker({
                 min: new Date(),
-                value:"Select Return date"
+                value:"Select Return date",
+                format: "dd/MM/yyyy" ,
+                change: function(e) {
+                    app.offer.viewModel.returnDate = e['sender']['_oldText'];
+                }
             });
             $("#departtimepicker").kendoTimePicker({
-                value:"Select Departure time"
+                value:"Select Departure time",
+                change: function(e) {
+                    app.offer.viewModel.departureTime = e['sender']['_oldText'];
+                }
             });
             $("#returntimepicker").kendoTimePicker({
-                value:"Select Return time"
+                value:"Select Return time",
+                change: function(e) {
+                    app.offer.viewModel.returnTime = e['sender']['_oldText'];
+                }
             });
-        },
-
-        addDynVar :function(num)
-        {
-            viewFModel['stopage'+num] ='';
-        },
-            
-        deleteDynVar:function(num)
-        {
-            delete viewFModel['stopage'+num];
         },
     
         sourceGoogleMap : function(myId)
@@ -128,13 +151,11 @@
                         }
                     }
                 }
+                console.log(source);
                 
-                offerBindingStep2.source = source['formatted_address'];
+                app.offer.viewModel.source = source['formatted_address'];
                 sessionStorage.setItem('source_lat',source.geometry.location.lat());
                 sessionStorage.setItem('source_long',source.geometry.location.lng());
-                console.log(sessionStorage.getItem('source_lat'));
-                console.log(sessionStorage.getItem('source_long'));
-                console.log(offerBindingStep2.source);
             });
         },
         
@@ -182,40 +203,10 @@
                     }
                 }
                 
-                offerBindingStep2.destination = destination['formatted_address'];
+                app.offer.viewModel.destination = destination['formatted_address'];
                 sessionStorage.setItem('destination_lat',destination.geometry.location.lat());
                 sessionStorage.setItem('destination_long',destination.geometry.location.lng());
-                console.log(sessionStorage.getItem('destination_lat'));
-                console.log(sessionStorage.getItem('destination_long'));
-                console.log(offerBindingStep2.destination);
             });
-        },
-        
-        addStopOverFld : function(count)
-        {
-            if(count === 5)
-            {   
-                $('#addStop').css("display","none" );
-                $('#deleteStop').css("display","block" );
-                //$('.disabledCls').css("display",'block');
-                //$("#addStop").off("click");
-               // $("#addStop").attr("src",'style/images/ic_plus_disabled.png');
-            }
-            html = '';
-            html ='<div class="removeDV'+count+'">';
-            html += '<div class="imgwithStopDv">';
-            html +='<div class="imgDV">';
-            html += '<p><img src="style/images/ic_poi_stopover.png"/></p>';
-            html +='</div>';
-            html +='<div id="stopageDv'+count+'" class="txtDv">';
-            html +='<p><input type="text" data-bind="value:stopage'+count+'"  name="stopage'+count+'" id="stopage'+count+'" class="stoptxtfld" placeholder="Add stop place '+count+'"/></p>';
-            html +='</div>';
-            html +='<div class="cancelBtn">';
-            html +='<img src="style/images/ic_minus.png" class="remove'+count+'" width="20px" height="20px"/>';
-            html +='</div>';
-            html +='</div>';
-            html +='</div>';
-           $(".stopoverDv").append(html);
         },
         
         seatAvailablity : function(data)
@@ -264,19 +255,22 @@
         
         stepFstContinue :function()
         {
-            if(offerBindingValue.vehicle === 0 || offerBindingValue.vehicle === "0")
+            var vehicle = this.get('vehicle').trim(),
+                seatAvailable = this.get('seatavailable').trim();
+            
+            if(vehicle === 0 || vehicle === "0" || vehicle === "")
             {
                 navigator.notification.alert("Please select your Vehicle Type",function(){},"Notification","Ok");
             }
-            else if(offerBindingValue.seatavailable === 0 || offerBindingValue.seatavailable === "0")
+            else if(seatAvailable === 0 || seatAvailable === "0" || seatAvailable === "")
             {
                 navigator.notification.alert("Please select your Seat available",function(){},"Notification","Ok");
             }
             else
             {
                 dataParam = {};
-                dataParam['vechicle'] = offerBindingValue.vehicle;
-                dataParam['seatAvailable'] = offerBindingValue.seatavailable;
+                dataParam['vechicle'] = vehicle;
+                dataParam['seatAvailable'] = seatAvailable;
                 console.log(dataParam);
                 app.mobileApp.navigate('#rideOfferView2');
             }
@@ -284,8 +278,7 @@
         
         onChange :function(e)
         {
-            console.log(e);
-            
+            app.offer.viewModel.typeOfRide = e.checked;
             if(e.checked === "true" || e.checked === true)
             {
                 $('.returnDiv').slideDown('slow');
@@ -320,16 +313,68 @@
         
         stepScondContinue:function()
         {
-           /* console.log(offerBindingStep2.source);
-            console.log(offerBindingStep2.destination);
-            app.offer.viewModel.calculateDistance();*/
-            console.log(offerBindingStep2.source);
-            console.log(offerBindingStep2.destination);
-            console.log("stopage1 "+$('#stopage1').val());
-            console.log("stopage2 "+offerBindingStep2.stopage2);
-            console.log("stopage3 "+offerBindingStep2.stopage3);
-            console.log("stopage4 "+offerBindingStep2.stopage4);
-            console.log("stopage5 "+offerBindingStep2.stopage5);
+            var sourcePlace = this.get('source').trim(),
+                destinationPlace = this.get('destination').trim();
+            //console.log(sourcePlace);
+            if(sourcePlace === "")
+            {
+                navigator.notification.alert("Please enter your source place",function(){},"Notification","Ok");
+            }
+            else if(destinationPlace === "")
+            {
+                navigator.notification.alert("Please enter your destination place",function(){},"Notification","Ok");
+            }
+            else
+            {
+                console.log(sourcePlace);
+                console.log(destinationPlace);
+            }
+            /*dataParam['source'] = offerBindingStep2.source;
+            dataParam['destination'] = offerBindingStep2.destination;
+            
+            for(var i=1;i<=sessionStorage.getItem('stopage');i++)
+            {
+                dataParam['stopage'+i] = $('#stopage'+i).val();
+            }
+            
+            if(dataParam['vechicle'] === "bike")
+            {
+                dataParam['bike_gender'] = $(".gender[type='radio']:checked").val();
+            }
+            
+            if(dataParam['vechicle'] === 'car')
+            {   
+                dataParam['carGoingWith'] = app.offer.viewModel.carGoingWith;
+                dataParam['passengerPref'] = app.offer.viewModel.carPreference;
+                if(app.offer.viewModel.carPreference === 'Indivisual')
+                {
+                   
+                    dataParam['car_gender'] = $(".carGender[type='radio']:checked").val();
+                }
+                else
+                {
+                    delete dataParam['car_gender'];
+                }
+            }
+            
+            if(app.offer.viewModel.typeOfRide === false || app.offer.viewModel.typeOfRide === "false")
+            {
+                dataParam['typeOfRiding'] =  false;
+                dataParam['departureDate'] =  app.offer.viewModel.departureDate;
+                dataParam['departureTime'] =  app.offer.viewModel.departureTime;
+                delete dataParam['returnDate'];
+                delete dataParam['returnTime'];
+            }
+            else
+            {
+                dataParam['typeOfRiding'] =  true;
+                dataParam['departureDate'] =  app.offer.viewModel.departureDate;
+                dataParam['departureTime'] =  app.offer.viewModel.departureTime;
+                dataParam['returnDate'] =  app.offer.viewModel.returnDate;
+                dataParam['returnTime'] =  app.offer.viewModel.returnTime;
+            }
+            dataParam['descriptions'] = offerBindingStep2.description;
+            console.log(dataParam);*/
         },
             
     });
