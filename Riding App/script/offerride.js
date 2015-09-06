@@ -2,13 +2,17 @@
     var offerViewModel,
         app = global.app = global.app || {};
     
-    var offerBindingValue,offerBindingStep2;
         offerViewModel = kendo.data.ObservableObject.extend({
          
         vehicle:'',    
         seatavailable:'',
         source:'',
         destination:'', 
+        stopage1:'',
+        stopage2:'',
+        stopage3:'',
+        stopage4:'',
+        stopage5:'',    
             
         carPreference:'',    
         carGoingWith:'',
@@ -26,13 +30,6 @@
             $('#seatAvailable').html(dfthtml);
             $('#seatAvailable').attr('disabled',true);
             $('#vehicleType').val(0);
-            
-            /*observable binding*/
-            /*offerBindingValue = kendo.observable({
-                seatavailable:'0',
-                vehicle:'0',
-            });
-            kendo.bind($('#stepFstForm'), offerBindingValue);*/
         },
             
         rideOfferView2Show  :function()
@@ -49,17 +46,6 @@
             {
                 viewFModel = kendo.observable();
             }
-            
-            /*offerBindingStep2 = kendo.observable({
-                source:'',
-                destination:'',
-                gendermale:false,
-                genderfemale:false,
-                gendermale_car:false,
-                genderfemale_car:false,
-                description:'',
-            });
-            kendo.bind($('#stepScondForm'), offerBindingStep2);*/
             
             $('#addStop').unbind();
             if(typeof count === 'undefined')
@@ -141,17 +127,16 @@
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var source = autocomplete.getPlace();
                 
-                for(var x in source['address_components'])
+                for(var i=0;i<source['address_components'].length;i++)
                 {
-                    if($.isNumeric)
+                    for(var j=0;j<source['address_components'][i]['types'].length;j++)
                     {
-                        if(source['address_components'][x]['types'][x] === 'locality')
+                        if(source['address_components'][i]['types'][j] === 'locality')
                         {
-                            sessionStorage.setItem('source_locality',source['address_components'][x]['long_name']);
+                            sessionStorage.setItem('source_locality',source['address_components'][i]['long_name']);
                         }
                     }
                 }
-                console.log(source);
                 
                 app.offer.viewModel.source = source['formatted_address'];
                 sessionStorage.setItem('source_lat',source.geometry.location.lat());
@@ -159,29 +144,52 @@
             });
         },
         
-        stopageGoogleMap : function(myId,num)
+        stopageGoogleMap : function(myId)
         {
+            console.log(myId);
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var stopage = autocomplete.getPlace();
                 
-                for(var x in stopage['address_components'])
+                for(var i=0;i<stopage['address_components'].length;i++)
                 {
-                    if($.isNumeric)
+                    for(var j=0;j<stopage['address_components'][i]['types'].length;j++)
                     {
-                        if(stopage['address_components'][x]['types'][0] === 'locality' || stopage['address_components'][x]['types'][1] === 'locality')
+                        if(stopage['address_components'][i]['types'][j] === 'locality')
                         {
-                            sessionStorage.setItem(myId,stopage['address_components'][x]['long_name']);
+                            sessionStorage.setItem(myId,stopage['address_components'][i]['long_name']);
                         }
                     }
                 }
-                offerBindingStep2.myId = stopage['formatted_address'];
+                
+                //offerBindingStep2.myId = stopage['formatted_address'];
+                
+                
+                if(myId === "stopage1")
+                {
+                    app.offer.viewModel.stopage1 = stopage['formatted_address'];
+                }
+                if(myId === "stopage2")
+                {
+                    app.offer.viewModel.stopage2 = stopage['formatted_address'];
+                }
+                if(myId === "stopage3")
+                {
+                    app.offer.viewModel.stopage3 = stopage['formatted_address'];
+                }
+                if(myId === "stopage4")
+                {
+                    app.offer.viewModel.stopage4 = stopage['formatted_address'];
+                }
+                if(myId === "stopage5")
+                {
+                    app.offer.viewModel.stopage4 = stopage['formatted_address'];
+                }
+                
+               // this.set(myId,stopage['formatted_address'])
                 sessionStorage.setItem(myId+'_lat',stopage.geometry.location.lat());
                 sessionStorage.setItem(myId+'_long',stopage.geometry.location.lng());
-                console.log(sessionStorage.getItem(myId+'_lat'));
-                console.log(sessionStorage.getItem(myId+'_long'));
-                console.log(offerBindingStep2.myId);
             });
         },
         
@@ -192,13 +200,13 @@
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var destination = autocomplete.getPlace();
                 
-                for(var x in destination['address_components'])
+                for(var i=0;i<destination['address_components'].length;i++)
                 {
-                    if($.isNumeric)
+                    for(var j=0;j<destination['address_components'][i]['types'].length;j++)
                     {
-                        if(destination['address_components'][x]['types'][x] === 'locality')
+                        if(destination['address_components'][i]['types'][j] === 'locality')
                         {
-                            sessionStorage.setItem('Destination_locality',destination['address_components'][x]['long_name']);
+                            sessionStorage.setItem('Destination_locality',destination['address_components'][i]['long_name']);
                         }
                     }
                 }
@@ -315,7 +323,8 @@
         {
             var sourcePlace = this.get('source').trim(),
                 destinationPlace = this.get('destination').trim();
-            //console.log(sourcePlace);
+            
+            
             if(sourcePlace === "")
             {
                 navigator.notification.alert("Please enter your source place",function(){},"Notification","Ok");
@@ -324,10 +333,23 @@
             {
                 navigator.notification.alert("Please enter your destination place",function(){},"Notification","Ok");
             }
+            else if(sessionStorage.getItem('stopage') !==0)
+            {
+                for(var i=1;i<=sessionStorage.getItem('stopage');i++)
+                {
+                    if(this.get('stopage'+i) === "")
+                    {
+                         navigator.notification.alert("Please enter your "+i+" Stopage place",function(){},"Notification","Ok");   
+                    }
+                }
+            }
             else
             {
                 console.log(sourcePlace);
                 console.log(destinationPlace);
+                console.log(this.get('stopage1').trim());
+                console.log(this.get('stopage2').trim());
+                console.log(this.get('stopage3').trim());
             }
             /*dataParam['source'] = offerBindingStep2.source;
             dataParam['destination'] = offerBindingStep2.destination;
