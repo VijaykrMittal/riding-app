@@ -263,7 +263,7 @@
         
         stepFstContinue :function()
         {
-            var vehicle = this.get('vehicle').trim(),
+            /*var vehicle = this.get('vehicle').trim(),
                 seatAvailable = this.get('seatavailable').trim();
             
             if(vehicle === 0 || vehicle === "0" || vehicle === "")
@@ -281,7 +281,8 @@
                 dataParam['seatAvailable'] = seatAvailable;
                 console.log(dataParam);
                 app.mobileApp.navigate('#rideOfferView2');
-            }
+            }*/
+            app.mobileApp.navigate('#rideOfferView2');
         },
         
         onChange :function(e)
@@ -321,7 +322,7 @@
         
         stepScondContinue:function()
         {
-            var sourcePlace = this.get('source').trim(),
+            /*var sourcePlace = this.get('source').trim(),
                 destinationPlace = this.get('destination').trim();
             
             
@@ -350,7 +351,7 @@
                 console.log(this.get('stopage1').trim());
                 console.log(this.get('stopage2').trim());
                 console.log(this.get('stopage3').trim());
-            }
+            }*/
             /*dataParam['source'] = offerBindingStep2.source;
             dataParam['destination'] = offerBindingStep2.destination;
             
@@ -397,6 +398,8 @@
             }
             dataParam['descriptions'] = offerBindingStep2.description;
             console.log(dataParam);*/
+            
+            app.mobileApp.navigate('#rideOfferView3');
         },
             
     });
