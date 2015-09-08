@@ -33,7 +33,7 @@ var app = (function(global){
             alert(message);
         },
         
-        recievePhoto:function()
+        receivePhoto:function()
         {
             var that = this;
             navigator.camera.getPicture(that.successCallback, that.errorCallback, {

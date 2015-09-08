@@ -12,7 +12,7 @@
         finalStepProcess : function()
         {
             alert("ok");
-            window.cameraInfo.recievePhoto();
+            window.cameraInfo.receivePhoto();
         }
     });
     
