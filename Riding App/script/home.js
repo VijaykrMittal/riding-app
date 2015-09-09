@@ -10,7 +10,7 @@
         },
         offerRide:function()
         {
-            app.mobileApp.navigate('views/rideOffer.html');
+            app.mobileApp.navigate('views/rideOffer1.html');
         },
         findRide:function()
         {

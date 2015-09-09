@@ -1,0 +1,272 @@
+<!--step 3-->
+<div data-role="view" id="rideOfferView3" data-use-native-scrolling="true" data-model="app.step3.viewModel" data-show="app.step3.viewModel.show">
+    <div data-role="content">
+        <div class="pricetodestDv">
+            <div class="contenttitleDv">
+                <p>
+                    <label class="txttitle">Price</label>
+                </p>
+            </div>
+            <div class="mainContentDv">
+                <div class="stopagepriceDv">
+                    <div class="dvLeft">
+                        <div class="innerRight1">
+                            <p>
+                                Noida
+                            </p>
+                        </div>
+                        <div class="innerRight2">
+                            <p>
+                                <img id="simple" src="style/images/arrow.png"/>
+                            </p>
+                        </div>
+                        <div class="innerRight3">
+                            <p>
+                                Jewar
+                            </p>    
+                        </div>
+                    </div>
+                    <div class="dvRight">
+                        <div class="innerRight1">
+                            <p>
+                                <img id="increaseprice" src="style/images/ic_plus.png"/>
+                            </p>
+                        </div>
+                        <div class="innerRight2">
+                            <p>
+                                <input type="text" class="priceBox" value="135"/>
+                            </p>
+                        </div>
+                        <div class="innerRight3">
+                            <p>
+                                <img id="decreaseprice" src="style/images/ic_minus.png"/>
+                            </p>    
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stopagepriceDv">
+                    <div class="dvLeft">
+                        <div class="innerRight1">
+                            <p>
+                                Jewar
+                            </p>
+                        </div>
+                        <div class="innerRight2">
+                            <p>
+                                <img id="simple" src="style/images/arrow.png"/>
+                            </p>
+                        </div>
+                        <div class="innerRight3">
+                            <p>
+                                Palwal
+                            </p>    
+                        </div>
+                    </div>
+                    <div class="dvRight">
+                        <div class="innerRight1">
+                            <p>
+                                <img id="increaseprice" src="style/images/ic_plus.png"/>
+                            </p>
+                        </div>
+                        <div class="innerRight2">
+                            <p>
+                                <input type="text" class="priceBox" value="230"/>
+                            </p>
+                        </div>
+                        <div class="innerRight3">
+                            <p>
+                                <img id="decreaseprice" src="style/images/ic_minus.png"/>
+                            </p>    
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stopagepriceDv">
+                    <div class="dvLeft">
+                        <div class="innerRight1">
+                            <p>
+                                Palwal
+                            </p>
+                        </div>
+                        <div class="innerRight2">
+                            <p>
+                                <img id="simple" src="style/images/arrow.png"/>
+                            </p>
+                        </div>
+                        <div class="innerRight3">
+                            <p>
+                                Aligarh
+                            </p>    
+                        </div>
+                    </div>
+                    <div class="dvRight">
+                        <div class="innerRight1">
+                            <p>
+                                <img id="increaseprice" src="style/images/ic_plus.png"/>
+                            </p>
+                        </div>
+                        <div class="innerRight2">
+                            <p>
+                                <input type="text" class="priceBox" value="350"/>
+                            </p>
+                        </div>
+                        <div class="innerRight3">
+                            <p>
+                                <img id="decreaseprice" src="style/images/ic_minus.png"/>
+                            </p>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="vehiclelistDv">
+            <div class="contenttitleDv">
+                <p>
+                    <label class="txttitle">Choose Your Vichle</label>
+                </p>
+            </div>
+            <div class="vehicleDv">
+                <p>
+                    <select class="dropdownbox">
+                        <option>Car A</option>
+                        <option>Car B</option>
+                        <option>Car C</option>
+                        <option>Car D</option>
+                    </select>
+                </p>
+                <p>
+                    <a data-role="button" class="addmoreBtn" data-bind="click:registervehicle">Add Another <span id="vechicleName"></span></a>
+                </p>
+            </div>
+        </div>
+        
+        <div id="vehicleRegister" class="addcarDv">
+            <div class="contenttitleDv">
+                <p>
+                    <label class="txttitle">Add Car Detail</label>
+                </p>
+            </div>
+            <div class="contentBox">
+                <p>
+                    <select class="carbranddrop dropdownbox">
+                        <option>Select Brand</option>
+                    </select>
+                </p>
+                <p>
+                    <select class="carmodeldrop dropdownbox">
+                        <option>Select Model</option>
+                    </select>
+                </p>
+                <p>
+                    <select class="carcomfortdrop dropdownbox">
+                        <option>Select Comfort</option>
+                    </select>
+                </p>
+                <p>
+                    <label>
+                        <input type="checkbox" value="nonAc"/>&nbsp;&nbsp;Non A/C
+                    </label>
+                    <label style="padding-left:15px">
+                        <input type="checkbox" value="ac" style="padding-left:15px"/>&nbsp;&nbsp;A/C
+                    </label>
+                </p>
+                <p>
+                    <select class="carcolordrop dropdownbox">
+                        <option>Select Color</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="textbox" placeholder="Registration Number" class="textbox"/>
+                </p>
+                <p>
+                    <a data-role="button" class="photoBtn" data-rel="actionsheet" href="#actionsheet">Choose Photo</a>
+                </p>
+            </div>
+        </div>
+        
+        <div id="vehicleRegister" class="addbikeDv">
+            <div class="contenttitleDv">
+                <p>
+                    <label class="txttitle">Add Bike Detail</label>
+                </p>
+            </div>
+            <div class="contentBox">
+                <p>
+                    <select class="carbranddrop dropdownbox">
+                        <option>Select Brand</option>
+                    </select>
+                </p>
+                <p>
+                    <select class="carmodeldrop dropdownbox">
+                        <option>Select Model</option>
+                    </select>
+                </p>
+                <p>
+                    <select class="carcolordrop dropdownbox">
+                        <option>Select Color</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="textbox" placeholder="Registration Number" class="textbox"/>
+                </p>
+                <p>
+                    <a data-role="button" class="photoBtn" data-rel="actionsheet" href="#actionsheet">Choose Photo</a>
+                </p>
+            </div>
+        </div>
+        
+        <div id="vehicleRegister" class="addbusDv">
+            <div class="contenttitleDv">
+                <p>
+                    <label class="txttitle">Add Bus Detail</label>
+                </p>
+            </div>
+            <div class="contentBox">
+                <p>
+                    <select class="carcolordrop dropdownbox">
+                        <option>Bus Type</option>
+                    </select>
+                </p>
+                <p>
+                    <select class="carcomfortdrop dropdownbox">
+                        <option>Select Comfort</option>
+                    </select>
+                </p>
+                <p>
+                    <label>
+                        <input type="checkbox" value="nonAc"/>&nbsp;&nbsp;Non A/C
+                    </label>
+                    <label style="padding-left:15px">
+                        <input type="checkbox" value="ac" style="padding-left:15px"/>&nbsp;&nbsp;A/C
+                    </label>
+                </p>
+                <p>
+                    <select class="carcolordrop dropdownbox">
+                        <option>Select Color</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="textbox" placeholder="Registration Number" class="textbox"/>
+                </p>
+                <p>
+                    <a data-role="button" class="photoBtn" data-rel="actionsheet" href="#actionsheet">Choose Photo</a>
+                </p>
+            </div>
+        </div>
+        
+        <div class="stepfinalsubmitDiv">
+            <p> 
+                <a data-role="backbutton">Back</a>
+                <a data-role="button" data-click="app.step3.viewModel.finalStepProcess">Continue</a>
+            </p>
+        </div>
+        
+    </div>
+    <!--Choose photo actionsheet-->
+    <ul id="actionsheet" data-role="actionsheet" data-cancel="Close">
+        <li><a>Camera</a></li>
+        <li><a>Gallery</a></li>
+    </ul>
+</div>

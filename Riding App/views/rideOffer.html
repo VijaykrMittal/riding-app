@@ -1,5 +1,5 @@
 <!--STEP 1-->
-<div data-role="view" id="rideOfferView" data-title="Offer a ride" data-model="app.offer.viewModel" data-show="app.offer.viewModel.show">
+<div data-role="view" id="rideOfferView" data-title="Offer a ride" data-model="app.step1.viewModel" data-show="app.step1.viewModel.show">
     <div data-role="content">
         <form id="stepFstForm">
             <div class="step1Div">
@@ -25,7 +25,7 @@
         </form>
         <div class="stepFstsubmitDiv">
             <p> 
-                <a data-role="button" data-bind="click:stepFstContinue">Continue</a>
+                <a data-role="button" data-click="firstFormSubmit">Continue</a>
             </p>
         </div>
     </div>
@@ -34,12 +34,17 @@
 <script>
     function myHtmlView(data)
     { 
-        app.offer.viewModel.seatAvailablity(data);
+        app.step1.viewModel.seatAvailablity(data);
+    }
+    
+    function firstFormSubmit()
+    {
+        app.step1.viewModel.submitStepFirst();
     }
 </script>
 
 <!--STEP 2-->
-<div data-role="view" id="rideOfferView2" data-use-native-scrolling="true" data-model="app.offer.viewModel" data-show="app.offer.viewModel.rideOfferView2Show">
+<!--<div data-role="view" id="rideOfferView2" data-use-native-scrolling="true" data-model="app.step2.viewModel" data-show="app.step2.viewModel.show">
     <div data-role="content">
        <form id="stepScondForm">
            <div class="departuremainDv">
@@ -241,7 +246,7 @@
        </form>
     </div>
 </div>
-
+-->
 <!--step 3-->
 <div data-role="view" id="rideOfferView3" data-use-native-scrolling="true">
     <div data-role="content">
@@ -519,7 +524,7 @@
     function myPreference(data)
     {
         console.log(data);
-        app.offer.viewModel.carPreference=data;
+        app.step2.viewModel.carPreference=data;
         
         if(data === "Indivisual")
         {
@@ -536,6 +541,6 @@
     function goingWith(data)
     {
          console.log(data);
-        app.offer.viewModel.carGoingWith=data;
+        app.step2.viewModel.carGoingWith=data;
     }
 </script>

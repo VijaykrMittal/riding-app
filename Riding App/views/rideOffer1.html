@@ -1,0 +1,45 @@
+<!--STEP 1-->
+<div data-role="view" id="rideOfferView" data-title="Offer a ride" data-model="app.step1.viewModel" data-show="app.step1.viewModel.show">
+    <div data-role="content">
+        <form id="stepFstForm">
+            <div class="step1Div">
+                <p>
+                    <label class="textTtle">Vehicle Type</label>
+                </p>
+                <p>
+                    <select class="selectbx" id="vehicleType" onchange="myHtmlView(this.value)" data-bind="value:vehicle">
+                        <option value="0">Select any one</option>
+                        <option value="bike">Bike</option>
+                        <option value="bus">Bus</option>
+                        <option value="car">Car</option>
+                    </select>
+                </p>
+                <p>
+                    <label class="textTtle">No. of Seats</label>
+                </p>
+                <p>
+                    <select class="selectbx" id="seatAvailable" data-bind="value:seatavailable">
+                        <option value="0">Seat Availablity</option>
+                    </select>
+                </p>
+            </div>
+        </form>
+        <div class="stepFstsubmitDiv">
+            <p> 
+                <a data-role="button" data-click="firstFormSubmit">Continue</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myHtmlView(data)
+    { 
+        app.step1.viewModel.seatAvailablity(data);
+    }
+    
+    function firstFormSubmit()
+    {
+        app.step1.viewModel.submitStepFirst();
+    }
+</script>

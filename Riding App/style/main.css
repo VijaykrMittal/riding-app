@@ -1,5 +1,5 @@
 #homeView .km-content {background:url(./images/bkgroad.jpg) no-repeat;background-size:100% 100%}
-#rideOfferView .km-content {background:#FFF;}
+#rideOfferView .km-content,#rideOfferView2 .km-content,#rideOfferView3 .km-content {background:#FFF;}
 #rideOfferView2 .km-content {background:#FFF;}
 /*#offerRideView .km-content {background-color:#FFF}*/
 
@@ -14,4 +14,7 @@ select {background:#FFF}
 #deleteStop {display:none}
 
 .removeDV1,.removeDV2,.removeDV3,.removeDV4,.removeDV5 {display:none}
+
+#errorDv {width:100%;height:auto;background:#00B6FF;display:none}
+.addcarDv,.addbikeDv,.addbusDv {display:none}
 

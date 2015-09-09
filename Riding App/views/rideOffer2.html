@@ -1,0 +1,233 @@
+<!--STEP 2-->
+<div data-role="view" id="rideOfferView2" data-use-native-scrolling="true" data-model="app.step2.viewModel" data-show="app.step2.viewModel.show">
+    <div data-role="content">
+       <form id="stepScondForm">
+           <div class="departuremainDv">
+               <div class="headerTitleDv">
+                    <p>
+                        <label class="textTtle">Departure</label>
+                    </p>
+               </div>
+               <div class="imgwithDv">
+                   <div class="imgDV">
+                       <p>
+                           <img src="style/images/ic_poi_departure.png"/>
+                       </p>
+                   </div>
+                   <div class="txtDv">
+                       <p>
+                           <input type="text" id="source" data-bind="value:source" name="source" class="txtfld" placeholder="From (specific address)"/>
+                       </p>
+                   </div>
+               </div>
+               <div class="stopoverDv">
+                   <div class="removeDV1">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv1" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage1"  name="stopage1" id="stopage1" class="stoptxtfld" placeholder="Add stop place 1"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove1" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV2">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv2" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage2"  name="stopage2" id="stopage2" class="stoptxtfld" placeholder="Add stop place 2"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove2" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV3">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv3" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage3"  name="stopage3" id="stopage3" class="stoptxtfld" placeholder="Add stop place 3"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove3" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV4">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv4" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage4"  name="stopage4" id="stopage4" class="stoptxtfld" placeholder="Add stop place 4"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove4" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="removeDV5">
+                       <div class="imgwithStopDv">
+                           <div class="imgDV">
+                               <p><img src="style/images/ic_poi_stopover.png"/></p>
+                           </div>
+                           <div id="stopageDv5" class="txtDv">
+                               <p><input type="text" data-bind="value:stopage5"  name="stopage5" id="stopage5" class="stoptxtfld" placeholder="Add stop place 5"/></p>
+                           </div>   
+                           <div class="cancelBtn">
+                               <img src="style/images/ic_minus.png" class="remove5" width="20px" height="20px"/>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="imgwithDestDv">
+                   <div class="imgDV">
+                       <p>
+                           <img src="style/images/ic_poi_arrival.png"/>
+                       </p>
+                   </div>
+                   <div class="txtDv">
+                       <p>
+                           <input type="text" id="destination" data-bind="value:destination" name="destination" class="txtfld" placeholder="To (specific address)"/>
+                       </p>
+                   </div>
+               </div>
+               <div class="departureDv">
+                   <p class="addStopage">
+                       <label>Add More Stop </label>
+                       <img id="addStop" src="style/images/ic_plus_active.png"/>
+                       <img id="deleteStop" src="style/images/ic_plus_disabled.png"/>
+                       
+                   </p>
+               </div>
+           </div>
+           <div class="carPassenger">
+                <div class="headerTitleDv">
+                    <p>
+                        <label class="textTtle">Going with</label>
+                    </p>
+                </div>   
+                <p>
+                    <select class="selectbx" onchange="goingWith(this.value)">
+                        <option value="0">Select any one</option>
+                        <option value="Alone">Alone</option>
+                        <option value="Family">Family</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </p>
+                <div class="headerTitleDv">
+                    <p>
+                        <label class="textTtle">Passenger Preference</label>
+                    </p>
+                </div>
+                <p>
+                    <select class="selectbx" onchange="myPreference(this.value)">
+                        <option value="0">Select any one</option>
+                        <option value="Couple">Couple</option>
+                        <option value="Indivisual">Indivisual</option>
+                        <option value="Any">Any</option>
+                    </select>
+                </p>
+                <p class="gender">
+                    <label><input type="radio" class="carGender" name="gender" id="gendermale_car" data-bind="checked:gendermale_car" value="male"/>Male</label>
+                    <label><input type="radio" class="carGender" name="gender" id="genderfemale_car" data-bind="checked:genderfemale_car" value="female"/>Female</label>
+                </p>
+           </div>
+           <div class="bikePassenger">
+               <div class="headerTitleDv">
+                   <p>
+                        <label class="textTtle">Passenger Preference</label>
+                   </p>
+               </div>    
+               <p>
+                    <label><input type="radio" class="gender" data-bind="checked:gendermale" name="gender" value="male"/>Male</label>
+                    <label><input type="radio" class="gender" name="gender" data-bind="checked:genderfemale" value="female"/>Female</label>
+               </p>
+           </div>
+           <div class="ridingDetail">
+               <div class="headerTitleDv">
+                   <p>
+                        <label class="textTtle">Type of Ride</label>
+                   </p>
+               </div>
+               <p class="roundTrip">
+                   <label>Round Trip</label><input type="checkbox" id="switch" data-role="switch" data-checked="true" data-change="app.step2.viewModel.onChange"/>
+               </p>
+               <div class="departureDiv">
+                    <p>
+                        <label class="textTtle">Departure</label>
+                    </p>
+                    <p>
+                        <input id="departdatepicker"/>
+                    </p>
+                    <p>
+                        <input id="departtimepicker"/>
+                    </p>
+               </div>
+               <div class="returnDiv">
+                    <p>
+                        <label class="textTtle">Return</label>
+                    </p>
+                    <p>
+                        <input id="returndatepicker"/>
+                    </p>
+                    <p>
+                        <input id="returntimepicker"/>
+                    </p>
+               </div>
+               <div class="headerTitleDv">
+                   <p>
+                        <label class="textTtle">Describe about your trip</label>
+                   </p>
+               </div>
+               <p>
+                   <textarea class="tripDesp" data-bind="value:description" placeholder="Description about your trip with minimum 50 words."></textarea>
+               </p>
+           </div>
+            <div class="stepScondsubmitDiv">
+                <p> 
+                    <a data-role="backbutton" data-id="back">Back</a>
+                    <a data-role="button" data-click="secondFormSubmit">Continue</a>
+                </p>
+            </div>
+       </form>
+    </div>
+</div>
+
+<script>
+    function myPreference(data)
+    {
+        console.log(data);
+        app.step2.viewModel.carPreference=data;
+        
+        if(data === "Indivisual")
+        {
+            $('.carPassenger .gender').css('display','block');
+        }
+        else
+        {
+            $('.carPassenger .gender').css('display','none');
+            $("#gendermale_car").attr('checked',false);
+            $("#genderfemale_car").attr('checked',false);
+        }
+    }
+    
+    function goingWith(data)
+    {
+         console.log(data);
+        app.step2.viewModel.carGoingWith=data;
+    }
+    
+    function secondFormSubmit()
+    {
+        app.step2.viewModel.submitStepSecond();
+    }
+</script>
