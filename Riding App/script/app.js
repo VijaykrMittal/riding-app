@@ -65,7 +65,8 @@ var app = (function(global){
                                                                 {
                                                                     skin:'flat',
                                                                     layout:'main-layout',
-                                                                    initial:'views/home.html'
+                                                                    initial:'views/home.html',
+                                                                    transition:'fade'
                                                                 }
     );
     

@@ -9,13 +9,16 @@
         error:'This is a Error',
         show: function(e)
         {
-            console.log(e);
             //var dfthtml = '<option value="0">Seat Availablity</option>';
            // $('#seatAvailable').html(dfthtml);
             
-            $('#seatAvailable').attr('disabled',true);
-            $('#vehicleType').val(0);
-            $('#seatAvailable').val(0);
+            if(sessionStorage.getItem('stepFstStatus') === null || sessionStorage.getItem('stepFstStatus') === false)
+            {
+                $('#seatAvailable').attr('disabled',true);
+                $('#vehicleType').val(0);
+                $('#seatAvailable').val(0);
+                sessionStorage.setItem('stepFstStatus',true);
+            }
         },
         
         seatAvailablity : function(data)
@@ -75,11 +78,10 @@
             if(vehicle === 0 || vehicle === "0" || vehicle === "")
             {
                 navigator.notification.alert("Please select your Vehicle Type",function(){},"Notification","Ok");
-                
             }
             else if(seatAvailable === 0 || seatAvailable === "0" || seatAvailable === "")
             {
-                navigator.notification.alert("Please select your Seat available",function(){},"Notification","Ok");
+               navigator.notification.alert("Please select your Seat available",function(){},"Notification","Ok");
             }
             else
             {
@@ -89,8 +91,6 @@
                 console.log(dataParam);
                 app.mobileApp.navigate('views/rideOffer2.html');
             }
-            
-            
         }
     });
     

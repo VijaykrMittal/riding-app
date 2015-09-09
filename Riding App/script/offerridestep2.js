@@ -22,6 +22,7 @@
         returnDate:'',
         returnTime:'',
         vehicleType:'', 
+        
         show: function()
         {
             app.step2.viewModel.setHtmlForVehicle(sessionStorage.getItem("vehicleSelect"));

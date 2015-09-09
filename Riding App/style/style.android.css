@@ -121,8 +121,9 @@
     .nvbar .km-button {background:none}
     .nvbar a{background-image:url(./images/ic_drawer.png) !important;width: 24px;height: 25px;border:none !important}
     .textTtle {font-size: 20px;font-weight: 500;color: #00B6FF;font-family: times;}
+    .textTtle1 {font-size: 20px;font-weight: 500;color: #fff;font-family: times;}
     .step1Div {width:90%;height:auto;margin:0px auto;margin-top:25%}
-    .step1Div .selectbx,.carPassenger .selectbx {width:100%;height:40px;}
+    .step1Div .selectbx,.carPassenger .selectbx {width:100%;height:40px;border: 1px solid #ccc;}
     .stepFstsubmitDiv {width:90%;margin:0px auto}
     .stepFstsubmitDiv p {margin-top:30px;text-align:center}
     .stepFstsubmitDiv a {width: 60%;height: 40px;font-size: 20px;line-height: 18px;font-weight: 500;font-family: times;background-color:#00B6FF !important;color:#fff !important}
@@ -143,14 +144,14 @@
     .imgwithDestDv .imgDV p {margin-top:0px}
     .departureDv{width: 100%;float: left;display: inline-block;margin-top: -20px;}
     .departureDv .txtfld{width: 100%;height: 35px;border: 1px solid #ccc;border-radius: 5px;}
-    .departureDv .addStopage {float: right;padding: 0;margin: 19px;width:40%}
+    .departureDv .addStopage {float: right;padding: 0;margin: 19px;width:40%;display: inline-block;}
     .addStopage label{float: left;margin-right: 15px;}
     .addStopage {margin-top: 0px;}
     .departureDv .addStopage a {width: 150px;height: 40px;color:#000;background: url(./images/ic_plus_active.png) no-repeat;background-size: 17% 55%;background-position: 116px 7px;text-align: left;border: none;}
     .departureDv .addStopage a:active {color:#000}
     .disabledCls {display:none}
     .tripDesp {width:100%;height:150px}
-    .headerTitleDv {width: 100%;height: 35px;background-color: #D8D6D6;}
+    .headerTitleDv {width: 100%;height: 35px;background-color: #00B6FF;}
     .headerTitleDv p {margin: 0px;margin-left: 20px;line-height: 32px;}
     .stepFstsubmitDiv {}
     
@@ -212,6 +213,9 @@
     .stepfinalsubmitDiv p {margin-top:30px}
     .stepfinalsubmitDiv a {width: 48%;height: 40px;font-size: 20px;line-height: 18px;font-weight: 500;font-family: times;background-color:#00B6FF !important;color:#fff !important}
     .stepfinalsubmitDiv a:active {background-color:#00B6FF !important;color:#fff !important}
+    
+    /*09-09-2015*/
+    .returnDv p {margin: 0;padding: 4px 0px 12px 17px;}
 }
 
 @media (min-width:0px) and (max-width:370px) {
