@@ -13,6 +13,8 @@
         stopage3:'',
         stopage4:'',
         stopage5:'',
+        gendermale:false,
+        genderfemale:false,
         
         carPreference:'',    
         carGoingWith:'',
@@ -49,6 +51,7 @@
                     $('#addStop').css("display","none" );
                     $('#deleteStop').css("display","block" );
                 }
+                $('#stopage'+count).val('');
                 sessionStorage.setItem('stopage',count);
                 $('.removeDV'+count).css('display','block');
                 
@@ -101,6 +104,21 @@
                     app.step2.viewModel.returnTime = e['sender']['_oldText'];
                 }
             });
+            
+            
+            
+            $('#datecal').click(function(){
+                $("#calendar").kendoCalendar({
+                    min: new Date(),
+                    change: function() {
+                        var value = this.value();
+                        console.log(value); //value is the selected date in the calendar
+                         $('#datecal').val(value);
+                        $("#caldv").hide();
+                    }
+                });
+            });
+
         },
         
         setHtmlForVehicle : function(data)
@@ -211,7 +229,7 @@
                 }
                 if(myId === "stopage5")
                 {
-                    app.step2.viewModel.stopage4 = stopage['formatted_address'];
+                    app.step2.viewModel.stopage5 = stopage['formatted_address'];
                 }
                 
                // this.set(myId,stopage['formatted_address'])
@@ -235,7 +253,95 @@
         
         submitStepSecond:function()
         {
-            app.mobileApp.navigate('views/rideOffer3.html');
+            //app.mobileApp.navigate('views/rideOffer3.html');
+            var source = this.get('source'),
+                stopage1 = this.get('stopage1'),
+                stopage2 = this.get('stopage2'),
+                stopage3 = this.get('stopage3'),
+                stopage4 = this.get('stopage4'),
+                stopage5 = this.get('stopage5'),
+                destination = this.get('destination');
+            
+            var gender = $(".gender[type='radio']:checked").val();
+            console.log(gender);
+            
+            /*if(source === "")
+            {
+                navigator.notification.alert('Please enter Source value',function(){},'Notification','OK');
+                $('#source').focus();
+            }
+            else if($('.removeDV1').css('display') === 'block' && stopage1 === '')
+            {
+                navigator.notification.alert('Please enter Stopage1 value',function(){},'Notification','OK');
+                $('#stopage1').focus();
+            }
+            else if($('.removeDV2').css('display') === 'block' && stopage2 === '')
+            {
+                navigator.notification.alert('Please enter Stopage2 value',function(){},'Notification','OK');
+                $('#stopage2').focus();
+            }
+            else if($('.removeDV3').css('display') === 'block' && stopage3 === '')
+            {
+                navigator.notification.alert('Please enter Stopage3 value',function(){},'Notification','OK');
+                $('#stopage3').focus();
+            }
+            else if($('.removeDV4').css('display') === 'block' && stopage4 === '')
+            {
+                navigator.notification.alert('Please enter Stopage4 value',function(){},'Notification','OK');
+                $('#stopage4').focus();
+            }
+            else if($('.removeDV5').css('display') === 'block' && stopage5 === '')
+            {
+                navigator.notification.alert('Please enter Stopage5 value',function(){},'Notification','OK');
+                $('#stopage5').focus();
+            }
+            else if(destination === "")
+            {
+                navigator.notification.alert('Please enter Destination value',function(){},'Notification','OK');
+                $('#source').focus();
+            }
+            else*/ if(sessionStorage.getItem("vehicleSelect") === 'bike')
+            {
+                alert("bike");
+                /*if($(".gender[type='radio']:checked").val() === 'undefined' || $(".gender[type='radio']:checked").val() === "")
+                {
+                    navigator.notification.alert('Please Select your gender',function(){},'Notification','OK');
+                }
+                else
+                {
+                    dataParam['gender'] = $(".gender[type='radio']:checked").val();
+                }*/
+                
+                if($('.gender').prop('checked'))
+                {
+                    alert("ok");
+                }
+                else
+                {
+                    alert("no");
+                }
+            }
+            /*else if(sessionStorage.getItem("vehicleSelect") === 'bus')
+            {
+                
+            }
+            else if(sessionStorage.getItem("vehicleSelect") === 'car')
+            {
+                
+            }*/
+            else
+            {
+                dataParam['source'] = source;
+                for(var i=1;i<=sessionStorage.getItem('stopage');i++)
+                {
+                    if($('.removeDV'+i).css('display') === 'block')
+                    {
+                        dataParam['stopage'+i] = this.get('stopage'+i);
+                    }
+                }
+                dataParam['destination'] = destination;
+                console.log(dataParam);
+            }
         }
     });
     

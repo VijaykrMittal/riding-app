@@ -88,7 +88,7 @@
                 dataParam = {};
                 dataParam['vechicle'] = vehicle;
                 dataParam['seatAvailable'] = seatAvailable;
-                console.log(dataParam);
+                alert(JSON.stringify(dataParam));
                 app.mobileApp.navigate('views/rideOffer2.html');
             }
         }

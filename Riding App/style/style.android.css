@@ -157,18 +157,18 @@
     
     /*Date and time picker css*/
     .departureDiv .k-datepicker{width: 100% !important;background: none !important;}
-    .departureDiv .k-datepicker .k-select {height: 34px !important;padding-left: 100% !important;}
-    #departdatepicker{width: 100%;height: 28px;}
+    .departureDiv .k-datepicker .k-select {height: auto !important;padding-left: 100% !important;}
+    #departdatepicker{width: 100%;height: 25px;line-height:0px}
     .departureDiv .k-timepicker{width: 100% !important;background: none !important;}
-    .departureDiv .k-timepicker .k-select {height: 34px !important;padding-left: 100% !important;}
-    #departtimepicker{width: 100%;height: 28px;}
+    .departureDiv .k-timepicker .k-select {height: auto !important;padding-left: 100% !important;}
+    #departtimepicker{width: 100%;height: 23px;line-height:0px}
 
     .returnDiv .k-datepicker{width: 100% !important;background: none !important;}
-    .returnDiv .k-datepicker .k-select {height: 34px !important;padding-left: 100% !important;}
-    #returndatepicker{width: 100%;height: 28px;}
+    .returnDiv .k-datepicker .k-select {height: auto !important;padding-left: 100% !important;}
+    #returndatepicker{width: 100%;height: 25px !important;line-height:0px}
     .returnDiv .k-timepicker{width: 100% !important;background: none !important;}
-    .returnDiv .k-timepicker .k-select {height: 34px !important;padding-left: 100% !important;}
-    #returntimepicker{width: 100%;height: 28px;}
+    .returnDiv .k-timepicker .k-select {height: auto !important;padding-left: 100% !important;}
+    #returntimepicker{width: 100%;height: 25px;line-height:0px}
     
     .k-calendar-container {width:323px}
     .k-calendar {width: 323px;}
@@ -215,7 +215,9 @@
     .stepfinalsubmitDiv a:active {background-color:#00B6FF !important;color:#fff !important}
     
     /*09-09-2015*/
-    .returnDv p {margin: 0;padding: 4px 0px 12px 17px;}
+    .returnDiv p {margin: 0;padding: 4px 12px 12px 17px;}
+    
+    
 }
 
 @media (min-width:0px) and (max-width:370px) {
