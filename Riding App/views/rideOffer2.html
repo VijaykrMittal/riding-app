@@ -115,7 +115,7 @@
                     </p>
                 </div>   
                 <p>
-                    <select class="selectbx" onchange="goingWith(this.value)">
+                    <select class="selectbx" id="prefGoingWith" onchange="goingWith(this.value)" data-bind="value:prefGoingWith">
                         <option value="0">Select any one</option>
                         <option value="Alone">Alone</option>
                         <option value="Family">Family</option>
@@ -129,7 +129,7 @@
                     </p>
                 </div>
                 <p>
-                    <select class="selectbx" onchange="myPreference(this.value)">
+                    <select class="selectbx" id="passengerPref" onchange="myPreference(this.value)" data-bind="value:passengerPref">
                         <option value="0">Select any one</option>
                         <option value="Couple">Couple</option>
                         <option value="Indivisual">Indivisual</option>
@@ -137,8 +137,8 @@
                     </select>
                 </p>
                 <p class="gender">
-                    <label><input type="radio" class="carGender" name="gender" id="gendermale_car" data-bind="checked:gendermale_car" value="male"/>Male</label>
-                    <label><input type="radio" class="carGender" name="gender" id="genderfemale_car" data-bind="checked:genderfemale_car" value="female"/>Female</label>
+                    <label><input type="radio" class="carGender" name="gender" id="gendermale_car" data-bind="value:gendermale_car" value="male"/>Male</label>
+                    <label><input type="radio" class="carGender" name="gender" id="genderfemale_car" data-bind="value:genderfemale_car" value="female"/>Female</label>
                 </p>
            </div>
            <div class="bikePassenger">
@@ -148,8 +148,8 @@
                    </p>
                </div>    
                <p>
-                    <label><input type="radio" class="gender" data-bind="checked:gendermale" name="gender" value="male"/>Male</label>
-                    <label><input type="radio" class="gender" name="gender" data-bind="checked:genderfemale" value="female"/>Female</label>
+                    <label><input type="radio" class="gender" id="male" data-bind="value:gendermale" name="gender" value="male"/>Male</label>
+                    <label><input type="radio" class="gender" id="female" name="gender" data-bind="value:genderfemale" value="female"/>Female</label>
                </p>
            </div>
            <div class="ridingDetail">

@@ -13,8 +13,12 @@
         stopage3:'',
         stopage4:'',
         stopage5:'',
-        gendermale:false,
-        genderfemale:false,
+        gendermale:'male',
+        genderfemale:'female',
+        prefGoingWith:'',
+        passengerPref:'',
+        gendermale_car:'male',
+        genderfemale_car:'female',
         
         carPreference:'',    
         carGoingWith:'',
@@ -107,7 +111,7 @@
             
             
             
-            $('#datecal').click(function(){
+            /*$('#datecal').click(function(){
                 $("#calendar").kendoCalendar({
                     min: new Date(),
                     change: function() {
@@ -117,7 +121,15 @@
                         $("#caldv").hide();
                     }
                 });
-            });
+            });*/
+            
+            
+            if(sessionStorage.getItem('stepScndStatus') === null || sessionStorage.getItem('stepScndStatus') === false)
+            {
+                $('#prefGoingWith').val(0);
+                $('#passengerPref').val(0);
+                sessionStorage.setItem('stepFstStatus',true);
+            }
 
         },
         
@@ -263,9 +275,9 @@
                 destination = this.get('destination');
             
             var gender = $(".gender[type='radio']:checked").val();
-            console.log(gender);
+            console.log(typeof gender);
             
-            /*if(source === "")
+          /*  if(source === "")
             {
                 navigator.notification.alert('Please enter Source value',function(){},'Notification','OK');
                 $('#source').focus();
@@ -300,35 +312,6 @@
                 navigator.notification.alert('Please enter Destination value',function(){},'Notification','OK');
                 $('#source').focus();
             }
-            else*/ if(sessionStorage.getItem("vehicleSelect") === 'bike')
-            {
-                alert("bike");
-                /*if($(".gender[type='radio']:checked").val() === 'undefined' || $(".gender[type='radio']:checked").val() === "")
-                {
-                    navigator.notification.alert('Please Select your gender',function(){},'Notification','OK');
-                }
-                else
-                {
-                    dataParam['gender'] = $(".gender[type='radio']:checked").val();
-                }*/
-                
-                if($('.gender').prop('checked'))
-                {
-                    alert("ok");
-                }
-                else
-                {
-                    alert("no");
-                }
-            }
-            /*else if(sessionStorage.getItem("vehicleSelect") === 'bus')
-            {
-                
-            }
-            else if(sessionStorage.getItem("vehicleSelect") === 'car')
-            {
-                
-            }*/
             else
             {
                 dataParam['source'] = source;
@@ -340,8 +323,45 @@
                     }
                 }
                 dataParam['destination'] = destination;
-                console.log(dataParam);
             }
+            if(sessionStorage.getItem("vehicleSelect") === 'bike')
+            {   
+                if($(".gender[type='radio']:checked").val() === undefined)
+                {
+                   navigator.notification.alert('Please Select gender for bike Passenger Preference.',function(){},'Notification','OK');                 
+                }
+                else
+                {
+                    dataParam['gender'] = $(".gender[type='radio']:checked").val();
+                }
+                
+            }*/
+            if(sessionStorage.getItem("vehicleSelect") === 'bus')
+            {
+                
+            }
+           /* if(sessionStorage.getItem("vehicleSelect") === 'car')
+            {
+                if(this.get('prefGoingWith').trim() === "" || this.get('prefGoingWith').trim() === "0" || this.get('prefGoingWith').trim() === 0)
+                {
+                    navigator.notification.alert('Please Select Choice for going with.',function(){},'Notification','OK');
+                }
+                else if(this.get('passengerPref').trim() === "" || this.get('passengerPref').trim() === "0" || this.get('passengerPref').trim() === 0)
+                {
+                    navigator.notification.alert('Please Select your Passenger Preference for car.',function(){},'Notification','OK');
+                }
+                else if($(".carGender[type='radio']:checked").val() === undefined)
+                {
+                    navigator.notification.alert('Please Select gender for car Passenger Preference.',function(){},'Notification','OK');
+                }
+                else
+                {
+                    dataParam['goingWith'] = this.get('prefGoingWith').trim();
+                    dataParam['carPassengerPreference'] = this.get('passengerPref').trim();
+                    dataParam['carPassengerPreferenceGender'] = $(".carGender[type='radio']:checked").val();
+                }
+            }*/
+            console.log(dataParam)
         }
     });
     
