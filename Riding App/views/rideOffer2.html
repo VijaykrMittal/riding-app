@@ -16,7 +16,7 @@
                    </div>
                    <div class="txtDv">
                        <p>
-                           <input type="text" id="source" data-bind="value:source" name="source" class="txtfld" placeholder="From (specific address)"/>
+                           <input type="text" id="source" data-bind="value:source" name="source" class="txtfld" placeholder="From (specific address)" required/>
                        </p>
                    </div>
                </div>
@@ -27,7 +27,7 @@
                                <p><img src="style/images/ic_poi_stopover.png"/></p>
                            </div>
                            <div id="stopageDv1" class="txtDv">
-                               <p><input type="text" data-bind="value:stopage1"  name="stopage1" id="stopage1" class="stoptxtfld" placeholder="Add stop place 1"/></p>
+                               <p><input type="text" data-bind="value:stopage1"  name="stopage1" id="stopage1" class="stoptxtfld" placeholder="Add stop place 1" required/></p>
                            </div>   
                            <div class="cancelBtn">
                                <img src="style/images/ic_minus.png" class="remove1" width="20px" height="20px"/>
@@ -115,7 +115,7 @@
                     </p>
                 </div>   
                 <p>
-                    <select class="selectbx" id="prefGoingWith" onchange="goingWith(this.value)" data-bind="value:prefGoingWith">
+                    <select class="selectbx" id="prefGoingWith" name="prefGoingWith" onchange="goingWith(this.value)" data-bind="value:prefGoingWith" required>
                         <option value="0">Select any one</option>
                         <option value="Alone">Alone</option>
                         <option value="Family">Family</option>
@@ -129,7 +129,7 @@
                     </p>
                 </div>
                 <p>
-                    <select class="selectbx" id="passengerPref" onchange="myPreference(this.value)" data-bind="value:passengerPref">
+                    <select class="selectbx" id="passengerPref" name="passengerPref" onchange="myPreference(this.value)" data-bind="value:passengerPref">
                         <option value="0">Select any one</option>
                         <option value="Couple">Couple</option>
                         <option value="Indivisual">Indivisual</option>
@@ -172,10 +172,10 @@
                         <label class="textTtle">Departure</label>
                     </p>
                     <p>
-                        <input id="departdatepicker"/>
+                        <input id="departdatepicker" data-bind="value:departuredatePickerValue"/>
                     </p>
                     <p>
-                        <input id="departtimepicker"/>
+                        <input id="departtimepicker" data-bind="value:departuretimePickerValue"/>
                     </p>
                </div>
                <div class="returnDiv">
@@ -183,10 +183,10 @@
                         <label class="textTtle">Return</label>
                     </p>
                     <p>
-                        <input id="returndatepicker"/>
+                        <input id="returndatepicker" data-bind="value:returndatePickerValue"/>
                     </p>
                     <p>
-                        <input id="returntimepicker"/>
+                        <input id="returntimepicker" data-bind="value:returntimePickerValue"/>
                     </p>
                </div>
                <div class="headerTitleDv">

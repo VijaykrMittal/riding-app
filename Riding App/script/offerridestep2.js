@@ -19,10 +19,15 @@
         passengerPref:'',
         gendermale_car:'male',
         genderfemale_car:'female',
+        departuredatePickerValue:'Select Departure date',
+        departuretimePickerValue:'Select Departure time',
+        returndatePickerValue:'Select Return date',
+        returntimePickerValue:'Select Return time',
+        description:'',
         
         carPreference:'',    
         carGoingWith:'',
-        typeOfRide:'',
+        typeOfRide:true,
         departureDate:'',
         departureTime:'',
         returnDate:'',
@@ -124,12 +129,80 @@
             });*/
             
             
-            if(sessionStorage.getItem('stepScndStatus') === null || sessionStorage.getItem('stepScndStatus') === false)
+            /*if(sessionStorage.getItem('stepScndStatus') === null || sessionStorage.getItem('stepScndStatus') === false)
             {
                 $('#prefGoingWith').val(0);
                 $('#passengerPref').val(0);
                 sessionStorage.setItem('stepFstStatus',true);
-            }
+            }*/
+            
+            
+            $("#stepScondForm").validate({
+        		
+        	rules: {
+        			source: {
+        				required: true
+        			},
+                    stopage1:{
+                        required:true
+                    },
+                    stopage2:{
+                        required:true
+                    },
+                    stopage3:{
+                        required:true
+                    },
+                    stopage4:{
+                        required:true
+                    },
+                    stopage5:{
+                        required:true
+                    },
+                    destination:{
+                        required:true
+                    },
+                    prefGoingWith:{
+                        required:true
+                    },
+                    passengerPref:{
+                        required:true
+                    }
+                
+        		},
+        	messages: {
+        			source: {
+        				required: "Source value is required"
+        			 },
+                    stopage1:{
+                        required:"First stopage value is required."
+                    },
+                    stopage2:{
+                        required:"Second stopage value is required."
+                    },
+                    stopage3:{
+                        required:"Third stopage value is required."
+                    },
+                    stopage4:{
+                        required:"Fourth stopage value is required."
+                    },
+                    stopage5:{
+                        required:"Fifth stopage value is required."
+                    },
+                    destination:{
+                        required:"Destination value is required."
+                    },
+                     destination:{
+                        required:"Destination value is required."
+                    },
+                    prefGoingWith:{
+                        required:"Going with value is required."
+                    }
+        		},
+                submitHandler: function(form) {
+                    // $("#b2cApp1 #next").prop("disabled", true);
+                    return false;
+                }
+            });
 
         },
         
@@ -275,9 +348,12 @@
                 destination = this.get('destination');
             
             var gender = $(".gender[type='radio']:checked").val();
-            console.log(typeof gender);
             
-          /*  if(source === "")
+            var status = $("#stepScondForm").valid();
+            if(status === false)
+            return status;  
+            
+           /* if(source === "")
             {
                 navigator.notification.alert('Please enter Source value',function(){},'Notification','OK');
                 $('#source').focus();
@@ -315,7 +391,7 @@
             else
             {
                 dataParam['source'] = source;
-                for(var i=1;i<=sessionStorage.getItem('stopage');i++)
+                /*for(var i=1;i<=sessionStorage.getItem('stopage');i++)
                 {
                     if($('.removeDV'+i).css('display') === 'block')
                     {
@@ -323,8 +399,8 @@
                     }
                 }
                 dataParam['destination'] = destination;
-            }
-            if(sessionStorage.getItem("vehicleSelect") === 'bike')
+            }*/
+            /*if(sessionStorage.getItem("vehicleSelect") === 'bike')
             {   
                 if($(".gender[type='radio']:checked").val() === undefined)
                 {
@@ -335,12 +411,8 @@
                     dataParam['gender'] = $(".gender[type='radio']:checked").val();
                 }
                 
-            }*/
-            if(sessionStorage.getItem("vehicleSelect") === 'bus')
-            {
-                
             }
-           /* if(sessionStorage.getItem("vehicleSelect") === 'car')
+            if(sessionStorage.getItem("vehicleSelect") === 'car')
             {
                 if(this.get('prefGoingWith').trim() === "" || this.get('prefGoingWith').trim() === "0" || this.get('prefGoingWith').trim() === 0)
                 {
@@ -360,8 +432,61 @@
                     dataParam['carPassengerPreference'] = this.get('passengerPref').trim();
                     dataParam['carPassengerPreferenceGender'] = $(".carGender[type='radio']:checked").val();
                 }
+            }
+            
+            if(app.step2.viewModel.typeOfRide === true)
+            {
+                if(this.get('departuredatePickerValue') === "Select Departure date")
+                {
+                     navigator.notification.alert('Please Select your departure date.',function(){},'Notification','OK');
+                }
+                else if(this.get('departuretimePickerValue') === "Select Departure time")
+                {
+                    navigator.notification.alert('Please Select your departure time.',function(){},'Notification','OK');
+                }
+                else if(this.get('returndatePickerValue') === "Select Return date")
+                {
+                    navigator.notification.alert('Please Select your return date.',function(){},'Notification','OK');
+                }
+                else if(this.get('returntimePickerValue') === "Select Return time")
+                {
+                    navigator.notification.alert('Please Select your return time.',function(){},'Notification','OK');
+                }
+                else
+                {
+                    dataParam['departureDate'] = this.get('departuredatePickerValue');
+                    dataParam['departureTime'] = this.get('departuretimePickerValue');
+                    dataParam['returnDate'] = this.get('returndatePickerValue');
+                    dataParam['returnTime'] = this.get('returntimePickerValue');
+                }
+            }
+            
+            if(app.step2.viewModel.typeOfRide === false)
+            {
+                if(this.get('departuredatePickerValue') === "Select Departure date")
+                {
+                     navigator.notification.alert('Please Select your departure date.',function(){},'Notification','OK');
+                }
+                else if(this.get('departuretimePickerValue') === "Select Departure time")
+                {
+                    navigator.notification.alert('Please Select your departure time.',function(){},'Notification','OK');
+                }
+                else
+                {
+                    dataParam['departureDate'] = this.get('departuredatePickerValue');
+                    dataParam['departureTime'] = this.get('departuretimePickerValue');
+                }
+            }
+            
+            if(this.get('description').trim() === "")
+            {
+                navigator.notification.alert('Please enter your trip description.',function(){},'Notification','OK');
+            }
+            else
+            {
+                dataParam['description'] = this.get('description').trim();
             }*/
-            console.log(dataParam)
+            console.log(dataParam);
         }
     });
     
