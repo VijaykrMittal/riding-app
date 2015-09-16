@@ -78,7 +78,6 @@
                 dataParam = {};
                 dataParam['vechicle'] = vehicle;
                 dataParam['seatAvailable'] = seatAvailable;
-                alert(JSON.stringify(dataParam));
                 app.mobileApp.navigate('views/rideOffer2.html');
             }
         },

@@ -70,6 +70,7 @@
                 
                 $('.remove'+count).unbind();
                 $('.remove'+count).on('click',function(){
+                    app.step2.viewModel.resetStopageValue($(this).attr('id'));
                     $('.removeDV'+count).css('display','none');
                     count = count-1;
                     sessionStorage.setItem('stopage',count);
@@ -114,119 +115,12 @@
                 }
             });
             
-            
-            
-            /*$('#datecal').click(function(){
-                $("#calendar").kendoCalendar({
-                    min: new Date(),
-                    change: function() {
-                        var value = this.value();
-                        console.log(value); //value is the selected date in the calendar
-                         $('#datecal').val(value);
-                        $("#caldv").hide();
-                    }
-                });
-            });*/
-            
-            
-            /*if(sessionStorage.getItem('stepScndStatus') === null || sessionStorage.getItem('stepScndStatus') === false)
+            if(sessionStorage.getItem('stepScndStatus') === null || sessionStorage.getItem('stepScndStatus') === false)
             {
                 $('#prefGoingWith').val(0);
                 $('#passengerPref').val(0);
                 sessionStorage.setItem('stepFstStatus',true);
-            }*/
-            
-            
-            /*$("#stepScondForm").validate({
-        		
-        	rules: {
-        			source: {
-        				required: true
-        			},
-                    stopage1:{
-                        required:true
-                    },
-                    stopage2:{
-                        required:true
-                    },
-                    stopage3:{
-                        required:true
-                    },
-                    stopage4:{
-                        required:true
-                    },
-                    stopage5:{
-                        required:true
-                    },
-                    destination:{
-                        required:true
-                    },
-                    prefGoingWith:{
-                        required:true
-                    },
-                    passengerPref:{
-                        required:true
-                    },
-                    departdatepicker:{
-                        required:true,
-                    },
-                    departtimepicker:{
-                        required:true
-                    },
-                    returndatepicker:{
-                        required:true,
-                    },
-                    returntimepicker:{
-                        required:true
-                    },
-        		},
-        	messages: {
-        			source: {
-        				required: "Source value is required"
-        			 },
-                    stopage1:{
-                        required:"First stopage value is required."
-                    },
-                    stopage2:{
-                        required:"Second stopage value is required."
-                    },
-                    stopage3:{
-                        required:"Third stopage value is required."
-                    },
-                    stopage4:{
-                        required:"Fourth stopage value is required."
-                    },
-                    stopage5:{
-                        required:"Fifth stopage value is required."
-                    },
-                    destination:{
-                        required:"Destination value is required."
-                    },
-                     destination:{
-                        required:"Destination value is required."
-                    },
-                    prefGoingWith:{
-                        required:"Going with value is required."
-                    },
-                    departdatepicker:{
-                        required:"Departure date is required."
-                    },
-                    departtimepicker:{
-                        required:"Departure time is required."
-                    },
-                    returndatepicker:{
-                        required:"Return date is required."
-                    },
-                    returntimepicker:{
-                        required:"Return time is required."
-                    }
-        		},
-                submitHandler: function(form) {
-                    // $("#b2cApp1 #next").prop("disabled", true);
-                    return false;
-                }
-            });*/
-
+            }
         },
         
         setHtmlForVehicle : function(data)
@@ -299,8 +193,8 @@
         },
         
         stopageGoogleMap : function(myId)
-        {
-            app.step2.viewModel.myId = '';
+        {   
+            
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -347,6 +241,35 @@
             });
         },
         
+        resetStopageValue:function(data)
+        {
+            if(data === "stopage1")
+            {
+                app.step2.viewModel.stopage1 = '';
+                delete dataParam['stopage1'];
+            }
+            if(data === "stopage2")
+            {
+                app.step2.viewModel.stopage2 = '';
+                delete dataParam['stopage2'];
+            }
+            if(data === "stopage3")
+            {
+                app.step2.viewModel.stopage3 = '';
+                delete dataParam['stopage3'];
+            }
+            if(data === "stopage4")
+            {
+                app.step2.viewModel.stopage4 = '';
+                delete dataParam['stopage4'];
+            }
+            if(data === "stopage5")
+            {
+                app.step2.viewModel.stopage5 = '';
+                delete dataParam['stopage5'];
+            }
+        },
+        
         onChange :function(e)
         {
             app.step2.viewModel.typeOfRide = e.checked;
@@ -373,52 +296,46 @@
             
             var gender = $(".gender[type='radio']:checked").val();
             
-           /* var status = $("#stepScondForm").valid();
-            if(status === false)
-            return status; */ 
-            
-            
-            
             if(source === "")
             {
                 navigator.notification.alert('Please enter Source value',function(){},'Notification','OK');
-                $('#source').focus();
+               // $('#source').focus();
                 return true;
             }
             else if($('.removeDV1').css('display') === 'block' && stopage1 === '')
             {
-                navigator.notification.alert('Please enter Stopage1 value',function(){},'Notification','OK');
-                $('#stopage1').focus();
+                navigator.notification.alert('Stopage value is required.',function(){},'Notification','OK');
+               // $('#stopage1').focus();
                 return true;
             }
             else if($('.removeDV2').css('display') === 'block' && stopage2 === '')
             {
-                navigator.notification.alert('Please enter Stopage2 value',function(){},'Notification','OK');
-                $('#stopage2').focus();
+                navigator.notification.alert('Stopage value is required.',function(){},'Notification','OK');
+                //$('#stopage2').focus();
                 return true;
             }
             else if($('.removeDV3').css('display') === 'block' && stopage3 === '')
             {
-                navigator.notification.alert('Please enter Stopage3 value',function(){},'Notification','OK');
-                $('#stopage3').focus();
+                navigator.notification.alert('Stopage value is required.',function(){},'Notification','OK');
+                //$('#stopage3').focus();
                 return true;
             }
             else if($('.removeDV4').css('display') === 'block' && stopage4 === '')
             {
-                navigator.notification.alert('Please enter Stopage4 value',function(){},'Notification','OK');
-                $('#stopage4').focus();
+                navigator.notification.alert('Stopage value is required.',function(){},'Notification','OK');
+                //$('#stopage4').focus();
                 return true;
             }
             else if($('.removeDV5').css('display') === 'block' && stopage5 === '')
             {
-                navigator.notification.alert('Please enter Stopage5 value',function(){},'Notification','OK');
-                $('#stopage5').focus();
+                navigator.notification.alert('Stopage value is required.',function(){},'Notification','OK');
+                //$('#stopage5').focus();
                 return true;
             }
             else if(destination === "")
             {
                 navigator.notification.alert('Please enter Destination value',function(){},'Notification','OK');
-                $('#source').focus();
+                //$('#destination').focus();
                 return true;
             }
             else
@@ -448,19 +365,19 @@
             }
             if(sessionStorage.getItem("vehicleSelect") === 'car')
             {
-                if(this.get('prefGoingWith').trim() === "" || this.get('prefGoingWith').trim() === "0" || this.get('prefGoingWith').trim() === 0)
+                if(this.get('prefGoingWith').trim() === "" || this.get('prefGoingWith').trim() === "0" || this.get('prefGoingWith').trim() === 0 ||this.get('prefGoingWith').trim() ==="Select any one")
                 {
                     navigator.notification.alert('Please Select Choice for going with.',function(){},'Notification','OK');
                     return true;
                 }
-                else if(this.get('passengerPref').trim() === "" || this.get('passengerPref').trim() === "0" || this.get('passengerPref').trim() === 0)
+                else if(this.get('passengerPref').trim() === "" || this.get('passengerPref').trim() === "0" || this.get('passengerPref').trim() === 0 || this.get('passengerPref').trim() === "Select any one")
                 {
                     navigator.notification.alert('Please Select your Passenger Preference for car.',function(){},'Notification','OK');
                     return true;
                 }
-                else if($(".carGender[type='radio']:checked").val() === undefined)
+                else if($(".carGender[type='radio']:checked").val() === undefined && $('#carPrefgender').css('display')==='block')
                 {
-                    navigator.notification.alert('Please Select gender for car Passenger Preference.',function(){},'Notification','OK');
+                    navigator.notification.alert('Please Select gender Preference for car.',function(){},'Notification','OK');
                     return true;
                 }
                 else
@@ -531,7 +448,13 @@
                 dataParam['description'] = this.get('description').trim();
             }
             //alert(JSON.stringify(dataParam));
-            console.log(dataParam);
+            app.step2.viewModel.moveToFinalStep(dataParam);
+        },
+        
+        moveToFinalStep : function(dataP)
+        {
+            console.log(dataP);
+            app.mobileApp.navigate('views/rideOffer3.html');
         }
     });
     
