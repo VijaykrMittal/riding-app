@@ -137,7 +137,7 @@
             }*/
             
             
-            $("#stepScondForm").validate({
+            /*$("#stepScondForm").validate({
         		
         	rules: {
         			source: {
@@ -166,8 +166,19 @@
                     },
                     passengerPref:{
                         required:true
-                    }
-                
+                    },
+                    departdatepicker:{
+                        required:true,
+                    },
+                    departtimepicker:{
+                        required:true
+                    },
+                    returndatepicker:{
+                        required:true,
+                    },
+                    returntimepicker:{
+                        required:true
+                    },
         		},
         	messages: {
         			source: {
@@ -196,13 +207,25 @@
                     },
                     prefGoingWith:{
                         required:"Going with value is required."
+                    },
+                    departdatepicker:{
+                        required:"Departure date is required."
+                    },
+                    departtimepicker:{
+                        required:"Departure time is required."
+                    },
+                    returndatepicker:{
+                        required:"Return date is required."
+                    },
+                    returntimepicker:{
+                        required:"Return time is required."
                     }
         		},
                 submitHandler: function(form) {
                     // $("#b2cApp1 #next").prop("disabled", true);
                     return false;
                 }
-            });
+            });*/
 
         },
         
@@ -277,6 +300,7 @@
         
         stopageGoogleMap : function(myId)
         {
+            app.step2.viewModel.myId = '';
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -349,49 +373,58 @@
             
             var gender = $(".gender[type='radio']:checked").val();
             
-            var status = $("#stepScondForm").valid();
+           /* var status = $("#stepScondForm").valid();
             if(status === false)
-            return status;  
+            return status; */ 
             
-           /* if(source === "")
+            
+            
+            if(source === "")
             {
                 navigator.notification.alert('Please enter Source value',function(){},'Notification','OK');
                 $('#source').focus();
+                return true;
             }
             else if($('.removeDV1').css('display') === 'block' && stopage1 === '')
             {
                 navigator.notification.alert('Please enter Stopage1 value',function(){},'Notification','OK');
                 $('#stopage1').focus();
+                return true;
             }
             else if($('.removeDV2').css('display') === 'block' && stopage2 === '')
             {
                 navigator.notification.alert('Please enter Stopage2 value',function(){},'Notification','OK');
                 $('#stopage2').focus();
+                return true;
             }
             else if($('.removeDV3').css('display') === 'block' && stopage3 === '')
             {
                 navigator.notification.alert('Please enter Stopage3 value',function(){},'Notification','OK');
                 $('#stopage3').focus();
+                return true;
             }
             else if($('.removeDV4').css('display') === 'block' && stopage4 === '')
             {
                 navigator.notification.alert('Please enter Stopage4 value',function(){},'Notification','OK');
                 $('#stopage4').focus();
+                return true;
             }
             else if($('.removeDV5').css('display') === 'block' && stopage5 === '')
             {
                 navigator.notification.alert('Please enter Stopage5 value',function(){},'Notification','OK');
                 $('#stopage5').focus();
+                return true;
             }
             else if(destination === "")
             {
                 navigator.notification.alert('Please enter Destination value',function(){},'Notification','OK');
                 $('#source').focus();
+                return true;
             }
             else
             {
                 dataParam['source'] = source;
-                /*for(var i=1;i<=sessionStorage.getItem('stopage');i++)
+                for(var i=1;i<=sessionStorage.getItem('stopage');i++)
                 {
                     if($('.removeDV'+i).css('display') === 'block')
                     {
@@ -399,12 +432,13 @@
                     }
                 }
                 dataParam['destination'] = destination;
-            }*/
-            /*if(sessionStorage.getItem("vehicleSelect") === 'bike')
+            }
+            if(sessionStorage.getItem("vehicleSelect") === 'bike')
             {   
                 if($(".gender[type='radio']:checked").val() === undefined)
                 {
-                   navigator.notification.alert('Please Select gender for bike Passenger Preference.',function(){},'Notification','OK');                 
+                    navigator.notification.alert('Please Select gender for bike Passenger Preference.',function(){},'Notification','OK');                 
+                    return true;
                 }
                 else
                 {
@@ -417,14 +451,17 @@
                 if(this.get('prefGoingWith').trim() === "" || this.get('prefGoingWith').trim() === "0" || this.get('prefGoingWith').trim() === 0)
                 {
                     navigator.notification.alert('Please Select Choice for going with.',function(){},'Notification','OK');
+                    return true;
                 }
                 else if(this.get('passengerPref').trim() === "" || this.get('passengerPref').trim() === "0" || this.get('passengerPref').trim() === 0)
                 {
                     navigator.notification.alert('Please Select your Passenger Preference for car.',function(){},'Notification','OK');
+                    return true;
                 }
                 else if($(".carGender[type='radio']:checked").val() === undefined)
                 {
                     navigator.notification.alert('Please Select gender for car Passenger Preference.',function(){},'Notification','OK');
+                    return true;
                 }
                 else
                 {
@@ -439,18 +476,22 @@
                 if(this.get('departuredatePickerValue') === "Select Departure date")
                 {
                      navigator.notification.alert('Please Select your departure date.',function(){},'Notification','OK');
+                    return true;
                 }
                 else if(this.get('departuretimePickerValue') === "Select Departure time")
                 {
                     navigator.notification.alert('Please Select your departure time.',function(){},'Notification','OK');
+                    return true;
                 }
                 else if(this.get('returndatePickerValue') === "Select Return date")
                 {
                     navigator.notification.alert('Please Select your return date.',function(){},'Notification','OK');
+                    return true;
                 }
                 else if(this.get('returntimePickerValue') === "Select Return time")
                 {
                     navigator.notification.alert('Please Select your return time.',function(){},'Notification','OK');
+                    return true;
                 }
                 else
                 {
@@ -465,11 +506,13 @@
             {
                 if(this.get('departuredatePickerValue') === "Select Departure date")
                 {
-                     navigator.notification.alert('Please Select your departure date.',function(){},'Notification','OK');
+                    navigator.notification.alert('Please Select your departure date.',function(){},'Notification','OK');
+                    return true;
                 }
                 else if(this.get('departuretimePickerValue') === "Select Departure time")
                 {
                     navigator.notification.alert('Please Select your departure time.',function(){},'Notification','OK');
+                    return true;
                 }
                 else
                 {
@@ -481,11 +524,13 @@
             if(this.get('description').trim() === "")
             {
                 navigator.notification.alert('Please enter your trip description.',function(){},'Notification','OK');
+                return true;
             }
             else
             {
                 dataParam['description'] = this.get('description').trim();
-            }*/
+            }
+            //alert(JSON.stringify(dataParam));
             console.log(dataParam);
         }
     });

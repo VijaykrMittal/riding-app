@@ -62,16 +62,6 @@
         
         submitStepFirst : function()
         {
-           /* alert("ok");
-            $('#errorDv').slideDown();
-            console.log(this.get('vehicle'));*/
-            
-            /*$('#errorDv').slideDown('slow',function(){
-                    setTimeout(function(){
-                        $('#errorDv').slideUp('slow');
-                    },2000);
-                });*/
-            
             var vehicle = this.get('vehicle').trim(),
                 seatAvailable = this.get('seatavailable').trim();
             
@@ -91,7 +81,7 @@
                 alert(JSON.stringify(dataParam));
                 app.mobileApp.navigate('views/rideOffer2.html');
             }
-        }
+        },
     });
     
     app.step1 = {
