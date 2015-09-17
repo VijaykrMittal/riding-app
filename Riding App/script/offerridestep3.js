@@ -29,6 +29,20 @@
                 alert(sessionStorage.getItem('stopage'));
                 app.step3.viewModel.setMultipleStopageHtml(stopageRute);
             }
+            
+            $('#distance').click(function(){
+               var tooltip = $("#distance").kendoTooltip({
+                animation: {
+                    close: {
+                        effects: "fade:out"
+                    }
+                },
+                position: "top"   
+               }).data("kendoTooltip");
+                tooltip.show($("#distance"));
+            });
+            
+            
         },
         
         setMultipleStopageHtml : function(stopageTime)
@@ -36,9 +50,19 @@
             var final = stopageTime.length -1;
             
             var mulHtml = '';
+            
+            for(var a=0,b=1;a<stopageTime.length;a++,b++)
+            {
+                if(a===0)
+                {
+                    app.step3.viewModel.calculateDistance(singleData[0]['source_lat'],singleData[0]['source_long'],singleData[0]['destination_lat'],singleData[0]['destination_long']);
+                }
+            }
+            
+            
+            
             for(var x=0,i=1;x<stopageTime.length;x++,i++)
             {
-                console.log(stopageTime[x]);
                 if(x=== final)
                 {
                     break;
@@ -49,6 +73,7 @@
                 if(x===0)
                 {
                     mulHtml += '<p id="source">'+stopageTime[x]+'</p>';
+                   // routeList.push(sessionStorage.getItem('source_lat'),sessionStorage.getItem('source_long'));
                 }
                 else
                 {
@@ -63,6 +88,7 @@
                 if(x === final-1)
                 {
                     mulHtml += '<p id="destination">'+stopageTime[i]+'</p>';
+                    //routeList.push(sessionStorage.getItem('destination_lat'),sessionStorage.getItem('destination_long'));
                 }
                 else
                 {
@@ -70,6 +96,9 @@
                 }
                 
                 mulHtml += '</div>';
+                mulHtml += '</div>';
+                mulHtml += '<div style="width:10%;float:left;">';
+                mulHtml += '<p id="distance" title="" style="margin: 9px 0 0 0;text-align: center;"><img id="increaseprice" src="style/images/ic_trips_offered.png" /></p>';   
                 mulHtml += '</div>';
                 mulHtml += '<div class="dvRight">';
                 mulHtml += '<div class="innerRight1">';
@@ -85,12 +114,14 @@
                 mulHtml += '</div>';
             }
             $('.mainContentDv').html(mulHtml);
+            
+            
         },
 
         
         setSingleStopageHtml : function(singleData)
         {
-            app.step3.viewModel.calculateDistance(singleData[0]['source_lat'],singleData[0]['source_long'],singleData[0]['destination_lat'],singleData[0]['destination_long']);
+            var route = app.step3.viewModel.calculateDistance(singleData[0]['source_lat'],singleData[0]['source_long'],singleData[0]['destination_lat'],singleData[0]['destination_long']);
             var singleHtml = '';
             singleHtml += '<div class="stopagepriceDv">';
             singleHtml += '<div class="dvLeft">';
@@ -103,6 +134,9 @@
             singleHtml += '<div class="innerRight3">';
             singleHtml += '<p>'+singleData[0]['destination']+'</p>';
             singleHtml += '</div>';
+            singleHtml += '</div>';
+            singleHtml += '<div style="width:10%;float:left;">';
+            singleHtml += '<p id="distance" title="'+route+' Km" style="margin: 9px 0 0 0;text-align: center;"><img id="increaseprice" src="style/images/ic_trips_offered.png" /></p>';   
             singleHtml += '</div>';
             singleHtml += '<div class="dvRight">';
             singleHtml += '<div class="innerRight1">';
@@ -118,7 +152,11 @@
             singleHtml += '</div>';
             
             $('.mainContentDv').html(singleHtml);
-            
+        },
+        
+        multipleCalculateDistance:function(data)
+        {
+            console.log(data);
         },
         
         calculateDistance :function(sourceLat,sourceLong,destinationLat,destinationLong)
@@ -129,7 +167,7 @@
             var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(app.step3.viewModel.degToRed(sessionStorage.getItem('source_lat'))) * Math.cos(app.step3.viewModel.degToRed(sessionStorage.getItem('destination_lat'))) * Math.sin(dLon/2) * Math.sin(dLon/2); 
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
             var d = R * c; // Distance in km
-            //return d;  
+            return Math.round(d);  
             
             console.log(d);
         },

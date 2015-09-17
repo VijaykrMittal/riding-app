@@ -183,18 +183,32 @@
     .contenttitleDv p .txttitle {font-size: 20px;font-weight: 500;color: #00B6FF;font-family: times;}
     .vehiclelistDv{width: 100%;height: auto;display: inline-block;}
     .mainContentDv {width:100%;height:auto;}
-    .mainContentDv .stopagepriceDv {width:100%;height:auto;display:inline-block}
-    .mainContentDv .stopagepriceDv .dvLeft {width:60%;float:left;margin-top: 2px;}
+   /* .mainContentDv .stopagepriceDv {width:100%;height:auto;display:inline-block}
+    .mainContentDv .stopagepriceDv .dvLeft {width:60%;float:left;margin-top: 6px;}
     .mainContentDv .stopagepriceDv .dvLeft .innerRight1,.mainContentDv .stopagepriceDv .dvLeft .innerRight3 {width:40%;float:left}
-    .mainContentDv .stopagepriceDv .dvLeft .innerRight2 {width:20%;float:left}
+    .mainContentDv .stopagepriceDv .dvLeft .innerRight2 {width:16%;float:left}
     .mainContentDv .stopagepriceDv .dvLeft .innerRight2 p {margin: 10px 0 0 -2px;}
     
-    .mainContentDv .stopagepriceDv .dvRight {width:30%;float:left}
+    .mainContentDv .stopagepriceDv .dvRight {width:30%;float:left;margin: 5px 0px 0px -6px;}
     .mainContentDv .stopagepriceDv .dvRight .innerRight1,.mainContentDv .stopagepriceDv .dvRight .innerRight3 {width:20%;float:left}
     .mainContentDv .stopagepriceDv .dvRight .innerRight2 {width:55%;float:left}
     .mainContentDv .stopagepriceDv .dvRight .innerRight2 p {width:100%}
-    .mainContentDv .stopagepriceDv .dvRight .innerRight2 p .priceBox{width: 100%;height: 30px;text-align: center;background:url(./images/indian-rupee.png) no-repeat;background-size:17px;background-position: 7px 5px;font-size: 17px;padding: 1px 0px 4px 14px;color: #4CAF50;font-weight: bold;border:none}
-    .mainContentDv .stopagepriceDv .dvRight .innerRight1 p,.mainContentDv .stopagepriceDv .dvRight .innerRight3 p{margin-top: 17px;}
+    .mainContentDv .stopagepriceDv .dvRight .innerRight2 p .priceBox{width: 100%;height: 30px;text-align: center;background:url(./images/indian-rupee.png) no-repeat;background-size:13px;background-position: 8px 9px;font-size: 16px;padding: 1px 0px 2px 14px;color: #4CAF50;font-weight: bold;border:none}
+    .mainContentDv .stopagepriceDv .dvRight .innerRight1 p,.mainContentDv .stopagepriceDv .dvRight .innerRight3 p{margin-top: 17px;}*/
+    
+    .mainContentDv .stopagepriceDv {width:100%;height:auto;display:inline-block}
+    .mainContentDv .stopagepriceDv .dvLeft {width:50%;float:left;display:inline-block;margin-top: 2px;}
+    .mainContentDv .stopagepriceDv .dvLeft .innerRight1,.mainContentDv .stopagepriceDv .dvLeft .innerRight3 {width:40%;float:left}
+    .mainContentDv .stopagepriceDv .dvLeft .innerRight2 {width:20%;float:left}
+    .mainContentDv .stopagepriceDv .dvLeft .innerRight2 p {margin: 9px 0 0 0px;}
+    .mainContentDv .stopagepriceDv .dvLeft .innerRight1 p,.mainContentDv .stopagepriceDv .dvLeft .innerRight3 p {font-size:15px;}
+    
+    .mainContentDv .stopagepriceDv .dvRight {width:30%;float:left;display:inline-block;margin-top: -3px;}
+    .mainContentDv .stopagepriceDv .dvRight .innerRight1,.mainContentDv .stopagepriceDv .dvRight .innerRight3 {width:15%;float:left}
+    .mainContentDv .stopagepriceDv .dvRight .innerRight2 {width:70%;float:left}
+    .mainContentDv .stopagepriceDv .dvRight .innerRight2 p {width:100%}
+    .mainContentDv .stopagepriceDv .dvRight .innerRight2 p .priceBox{width: 100%;height: 30px;text-align: center;background:url(./images/indian-rupee.png) no-repeat;background-size:15px;background-position: 15px 7px;font-size: 20px;padding: 0px 0px 1px 25px;color: #4CAF50;font-weight: bold;border:none}
+    .mainContentDv .stopagepriceDv .dvRight .innerRight1 p,.mainContentDv .stopagepriceDv .dvRight .innerRight3 p{margin-top:18px}
     
     .vehicleDv {width:100%;height:auto}
     .vehicleDv .dropdownbox{width:100%;height:36px;}
