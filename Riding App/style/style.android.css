@@ -184,12 +184,12 @@
     .vehiclelistDv{width: 100%;height: auto;display: inline-block;}
     .mainContentDv {width:100%;height:auto;}
     .mainContentDv .stopagepriceDv {width:100%;height:auto;display:inline-block}
-    .mainContentDv .stopagepriceDv .dvLeft {width:55%;float:left}
+    .mainContentDv .stopagepriceDv .dvLeft {width:60%;float:left;margin-top: 2px;}
     .mainContentDv .stopagepriceDv .dvLeft .innerRight1,.mainContentDv .stopagepriceDv .dvLeft .innerRight3 {width:40%;float:left}
     .mainContentDv .stopagepriceDv .dvLeft .innerRight2 {width:20%;float:left}
-    .mainContentDv .stopagepriceDv .dvLeft .innerRight2 p {margin-top: 11px;margin-left: 8px;}
+    .mainContentDv .stopagepriceDv .dvLeft .innerRight2 p {margin: 10px 0 0 -2px;}
     
-    .mainContentDv .stopagepriceDv .dvRight {width:40%;float:left}
+    .mainContentDv .stopagepriceDv .dvRight {width:30%;float:left}
     .mainContentDv .stopagepriceDv .dvRight .innerRight1,.mainContentDv .stopagepriceDv .dvRight .innerRight3 {width:20%;float:left}
     .mainContentDv .stopagepriceDv .dvRight .innerRight2 {width:55%;float:left}
     .mainContentDv .stopagepriceDv .dvRight .innerRight2 p {width:100%}
@@ -217,6 +217,8 @@
     /*09-09-2015*/
     .returnDiv p {margin: 0;padding: 4px 12px 12px 17px;}
     label.error {font-size:12px;color:#00B6FF;}
+    
+    
     
 }
 
