@@ -55,7 +55,15 @@
             {
                 if(a===0)
                 {
-                    app.step3.viewModel.calculateDistance(singleData[0]['source_lat'],singleData[0]['source_long'],singleData[0]['destination_lat'],singleData[0]['destination_long']);
+                    app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('source_lat'),sessionStorage.getItem('source_long'),  sessionStorage.getItem('stopage'+b+'_lat'),sessionStorage.getItem('stopage'+b+'_long'));
+                }
+                else
+                {
+                    if(x === final-1)
+                    {
+                        
+                    }
+                    app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('stopage'+a+'_lat'),sessionStorage.getItem('stopage'+a+'_long'),  sessionStorage.getItem('stopage'+b+'_lat'),sessionStorage.getItem('stopage'+b+'_long'));
                 }
             }
             
@@ -154,9 +162,9 @@
             $('.mainContentDv').html(singleHtml);
         },
         
-        multipleCalculateDistance:function(data)
+        multipleCalculateDistance:function(sourceLat,sourceLong,destinationLat,destinationLong)
         {
-            console.log(data);
+            console.log(sourceLat+","+sourceLong+","+destinationLat+","+destinationLong);
         },
         
         calculateDistance :function(sourceLat,sourceLong,destinationLat,destinationLong)
