@@ -177,7 +177,7 @@
                     minP = distance*sessionStorage.getItem('min');
                     
                     stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
-                    
+                    sessionStorage.setItem('priceBox'+b,maxP);
                 }
                 else
                 {
@@ -187,6 +187,7 @@
                         maxP = distance*sessionStorage.getItem('max');
                         minP = distance*sessionStorage.getItem('min');
                         stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
+                        sessionStorage.setItem('priceBox'+b,maxP);
                     }
                     else
                     {
@@ -194,6 +195,7 @@
                         maxP = distance*sessionStorage.getItem('max');
                         minP = distance*sessionStorage.getItem('min');
                         stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
+                        sessionStorage.setItem('priceBox'+b,maxP);
                     }
                 }
             }
