@@ -2,8 +2,16 @@
     var step3ViewModel,
         app = global.app = global.app || {};
     
+    var a = 1;
+    
     step3ViewModel = kendo.data.ObservableObject.extend({
         vechicleName:'',
+        stopageRoute1:'',
+        stopageRoute2:'',
+        stopageRoute3:'',
+        stopageRoute4:'',
+        stopageRoute5:'',
+        priceBox:'',
         show: function()
         {
             //app.step3.viewModel.registervehicle(sessionStorage.getItem("vehicleSelect"));
@@ -14,7 +22,6 @@
                 singleRoute=[];
                 singleRoute.push({source:sessionStorage.getItem('source_locality'),source_lat:sessionStorage.getItem('source_lat'),source_long:sessionStorage.getItem('source_long'),destination:sessionStorage.getItem('Destination_locality'),destination_lat:sessionStorage.getItem('destination_lat'),destination_long:sessionStorage.getItem('destination_long')});
                 console.log(singleRoute);
-                //app.step3.viewModel.setSingleStopageHtml(sessionStorage.getItem('source_locality'),sessionStorage.getItem('Destination_locality'));
                 app.step3.viewModel.setSingleStopageHtml(singleRoute);
             }
             else
@@ -42,32 +49,154 @@
                 tooltip.show($("#distance"));
             });
             
+            $('#distance1').click(function(){
+               var tooltip = $("#distance1").kendoTooltip({
+                animation: {
+                    close: {
+                        effects: "fade:out"
+                    }
+                },
+                position: "top"   
+               }).data("kendoTooltip");
+                tooltip.show($("#distance1"));
+            });
             
+            $('#distance2').click(function(){
+               var tooltip = $("#distance2").kendoTooltip({
+                animation: {
+                    close: {
+                        effects: "fade:out"
+                    }
+                },
+                position: "top"   
+               }).data("kendoTooltip");
+                tooltip.show($("#distance2"));
+            });
+            
+            $('#distance3').click(function(){
+               var tooltip = $("#distance3").kendoTooltip({
+                animation: {
+                    close: {
+                        effects: "fade:out"
+                    }
+                },
+                position: "top"   
+               }).data("kendoTooltip");
+                tooltip.show($("#distance3"));
+            });
+            
+            $('#distance4').click(function(){
+               var tooltip = $("#distance4").kendoTooltip({
+                animation: {
+                    close: {
+                        effects: "fade:out"
+                    }
+                },
+                position: "top"   
+               }).data("kendoTooltip");
+                tooltip.show($("#distance4"));
+            });
+            
+            $('#distance5').click(function(){
+               var tooltip = $("#distance5").kendoTooltip({
+                animation: {
+                    close: {
+                        effects: "fade:out"
+                    }
+                },
+                position: "top"   
+               }).data("kendoTooltip");
+                tooltip.show($("#distance5"));
+            });
+            
+            /*increment the value*/
+            $('.increment1').click(function(){
+               console.log($('#innerRight1 p input').attr('id'));
+                app.step3.viewModel.priceIncrement($('#innerRight1 p input').attr('id'));
+            });
+            
+            $('.increment2').click(function(){
+                console.log($('#innerRight2 p input').attr('id'));
+                app.step3.viewModel.priceIncrement($('#innerRight2 p input').attr('id'));
+            });
+            
+            $('.increment3').click(function(){
+                app.step3.viewModel.priceIncrement($('#innerRight3 p input').attr('id'));
+            });
+            
+            $('.increment4').click(function(){
+                app.step3.viewModel.priceIncrement($('#innerRight4 p input').attr('id'));
+            });
+            
+            $('.increment5').click(function(){
+                app.step3.viewModel.priceIncrement($('#innerRight5 p input').attr('id'));
+            });
+            
+            /*decrement value*/
+            $('.decrement1').click(function(){
+                app.step3.viewModel.priceDecrement($('#innerRight1 p input').attr('id'));
+            });
+            
+            $('.decrement2').click(function(){
+                app.step3.viewModel.priceDecrement($('#innerRight2 p input').attr('id'));
+            });
+            
+            $('.decrement3').click(function(){
+                app.step3.viewModel.priceDecrement($('#innerRight3 p input').attr('id'));
+            });
+            
+            $('.decrement4').click(function(){
+                app.step3.viewModel.priceDecrement($('#innerRight4 p input').attr('id'));
+            });
+            
+            $('.decrement5').click(function(){
+                app.step3.viewModel.priceDecrement($('#innerRight5 p input').attr('id'));
+            });
         },
         
         setMultipleStopageHtml : function(stopageTime)
         {
+            
             var final = stopageTime.length -1;
             
             var mulHtml = '';
+            stopageList = [];
+            
+            var distance,maxP,minP;
             
             for(var a=0,b=1;a<stopageTime.length;a++,b++)
             {
+                if(a===final)
+                {
+                    break;
+                }
                 if(a===0)
                 {
-                    app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('source_lat'),sessionStorage.getItem('source_long'),  sessionStorage.getItem('stopage'+b+'_lat'),sessionStorage.getItem('stopage'+b+'_long'));
+                    distance = app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('source_lat'),sessionStorage.getItem('source_long'),  sessionStorage.getItem('stopage'+b+'_lat'),sessionStorage.getItem('stopage'+b+'_long'));
+                    maxP = distance*sessionStorage.getItem('max');
+                    minP = distance*sessionStorage.getItem('min');
+                    
+                    stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
+                    
                 }
                 else
                 {
-                    if(x === final-1)
+                    if(a === final-1)
                     {
-                        
+                        distance = app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('stopage'+a+'_lat'),sessionStorage.getItem('stopage'+a+'_long'),  sessionStorage.getItem('destination_lat'),sessionStorage.getItem('destination_long'));
+                        maxP = distance*sessionStorage.getItem('max');
+                        minP = distance*sessionStorage.getItem('min');
+                        stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
                     }
-                    app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('stopage'+a+'_lat'),sessionStorage.getItem('stopage'+a+'_long'),  sessionStorage.getItem('stopage'+b+'_lat'),sessionStorage.getItem('stopage'+b+'_long'));
+                    else
+                    {
+                        distance = app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('stopage'+a+'_lat'),sessionStorage.getItem('stopage'+a+'_long'),  sessionStorage.getItem('stopage'+b+'_lat'),sessionStorage.getItem('stopage'+b+'_long'));
+                        maxP = distance*sessionStorage.getItem('max');
+                        minP = distance*sessionStorage.getItem('min');
+                        stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
+                    }
                 }
             }
-            
-            
             
             for(var x=0,i=1;x<stopageTime.length;x++,i++)
             {
@@ -81,7 +210,6 @@
                 if(x===0)
                 {
                     mulHtml += '<p id="source">'+stopageTime[x]+'</p>';
-                   // routeList.push(sessionStorage.getItem('source_lat'),sessionStorage.getItem('source_long'));
                 }
                 else
                 {
@@ -96,7 +224,6 @@
                 if(x === final-1)
                 {
                     mulHtml += '<p id="destination">'+stopageTime[i]+'</p>';
-                    //routeList.push(sessionStorage.getItem('destination_lat'),sessionStorage.getItem('destination_long'));
                 }
                 else
                 {
@@ -105,27 +232,61 @@
                 
                 mulHtml += '</div>';
                 mulHtml += '</div>';
-                mulHtml += '<div style="width:10%;float:left;">';
-                mulHtml += '<p id="distance" title="" style="margin: 9px 0 0 0;text-align: center;"><img id="increaseprice" src="style/images/ic_trips_offered.png" /></p>';   
+                mulHtml += '<div style="width:10%;float:left;margin-left:5px">';
+                mulHtml += '<p id="distance'+i+'" title="'+stopageList[x]['distance']+' Km" style="margin: 9px 0 0 8px;text-align: center;"><img id="increaseprice" src="style/images/ic_trips_offered.png" /></p>';   
                 mulHtml += '</div>';
                 mulHtml += '<div class="dvRight">';
                 mulHtml += '<div class="innerRight1">';
-                mulHtml += '<p><img id="increaseprice" src="style/images/ic_plus.png"/></p>';
+                mulHtml += '<p class="increment'+i+'" ><img id="increaseprice" src="style/images/ic_plus.png"/></p>';
+                mulHtml += '<p class="incrementNo"><img id="increaseprice" src="style/images/ic_plus_disabled.png"/></p>';
                 mulHtml += '</div>';
-                mulHtml += '<div class="innerRight2">';
-                mulHtml += '<p><input type="text" class="priceBox" value="135" disabled/></p>';
+                mulHtml += '<div class="innerRight2" id="innerRight'+i+'">';
+                mulHtml += '<p><input type="text" class="priceBox" id="priceBox'+i+'" data-bind="value:priceBox" value="'+stopageList[x]['maxprice']+'" disabled/></p>';
                 mulHtml += '</div>';
                 mulHtml += '<div class="innerRight3">';
-                mulHtml += '<p><img id="decreaseprice" src="style/images/ic_minus.png"/></p>';
+                mulHtml += '<p class="decrement'+i+'"><img id="decreaseprice'+i+'"  src="style/images/ic_minus.png"/></p>';
+                mulHtml += '<p class="decrementNO"><img id="decreaseprice'+i+'"  src="style/images/ic_minus_disabled.png"/></p>';
                 mulHtml += '</div>';
                 mulHtml += '</div>';
                 mulHtml += '</div>';
             }
             $('.mainContentDv').html(mulHtml);
-            
-            
+            console.log(stopageTime.length);
+            for(var y=0,k=1;y<stopageTime.length-1;y++,k++)
+            {
+                console.log(typeof $('#priceBox'+k).val());
+                console.log(typeof stopageList[y]['maxprice']);
+                if(parseInt($('#priceBox'+k).val()) === stopageList[y]['maxprice'])
+                {
+                    alert("max");
+                    $('.incrementNo').css('display','block')
+                    $('.increment'+k).css('display','none');
+                    $('.decrementNO').css('display','none')
+                    $('.decrement'+k).css('display','block');
+                }
+                else
+                {
+                    alert("no");
+                    $('.incrementNo').css('display','none')
+                    $('.increment'+k).css('display','block');
+                     $('.decrementNO').css('display','block');
+                    $('.decrement'+k).css('display','none');
+                }
+            }
+           // $('.decrementNO').css('display','none');
+           // $('.incrementNo').css('display','none');
         },
-
+        
+        priceIncrement:function(data)
+        {
+            document.getElementById(data).value++;
+        },
+        
+        priceDecrement:function(data)
+        {
+            console.log($('#'+data).val());
+            document.getElementById(data).value--;
+        },
         
         setSingleStopageHtml : function(singleData)
         {
@@ -165,6 +326,16 @@
         multipleCalculateDistance:function(sourceLat,sourceLong,destinationLat,destinationLong)
         {
             console.log(sourceLat+","+sourceLong+","+destinationLat+","+destinationLong);
+            
+            var R = 6371; // Radius of the earth in km
+            var dLat = app.step3.viewModel.degToRed(sourceLat - destinationLat);  // deg2rad below sessionStorage.getItem('source_lat');
+            var dLon = app.step3.viewModel.degToRed(sourceLong-destinationLong); 
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(app.step3.viewModel.degToRed(sessionStorage.getItem('source_lat'))) * Math.cos(app.step3.viewModel.degToRed(sessionStorage.getItem('destination_lat'))) * Math.sin(dLon/2) * Math.sin(dLon/2); 
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            var d = R * c; // Distance in km
+            return Math.round(d);  
+            
+            console.log(d);
         },
         
         calculateDistance :function(sourceLat,sourceLong,destinationLat,destinationLong)

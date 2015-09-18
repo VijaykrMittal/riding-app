@@ -27,7 +27,7 @@
         
         carPreference:'',    
         carGoingWith:'',
-        typeOfRide:true,
+        typeOfRide:false,
         departureDate:'',
         departureTime:'',
         returnDate:'',
@@ -36,6 +36,7 @@
         
         show: function()
         {
+            app.step2.viewModel.dataGetWebAPI();
             app.step2.viewModel.setHtmlForVehicle(sessionStorage.getItem("vehicleSelect"));
             
             $('#source').click(function(){
@@ -82,8 +83,6 @@
                 });
             });
             
-            $('.returnDiv').css('display','block');
-            
             /*Kendo date and Time*/
             
             $("#departdatepicker").kendoDatePicker({
@@ -119,8 +118,43 @@
             {
                 $('#prefGoingWith').val(0);
                 $('#passengerPref').val(0);
-                sessionStorage.setItem('stepFstStatus',true);
+                $('.returnDiv').css('display','none');
+                sessionStorage.setItem('stepScndStatus',true);
             }
+            else
+            {
+                $('.returnDiv').css('display','block');
+            }
+        },
+        
+        dataGetWebAPI : function()
+        {
+            var dataS = new kendo.data.DataSource({
+                transport:{
+                    read:{
+                        url:'http://ride.baniyacommunity.com/webservices/offer/ride',
+                        type:'GET',
+                        dataType:'json'
+                    }
+                },
+                schema:{
+                    data:function(data)
+                    {
+                        return [data];
+                    }
+                },
+                error:function(e){
+                    app.mobileApp.hideLoading();
+                    navigator.notification.alert("Server not responding properly.Please check your internet connection.",
+                        function () { }, "Notification", 'Ok');
+                }
+            });
+            dataS.fetch(function(){
+                var data = this.data();
+                console.log(data);
+                sessionStorage.setItem("max",data[0]['prcie']['max']);
+                sessionStorage.setItem("min",data[0]['prcie']['min']);
+            });
         },
         
         setHtmlForVehicle : function(data)
@@ -194,7 +228,6 @@
         
         stopageGoogleMap : function(myId)
         {   
-            
             var input = document.getElementById(myId);
             var autocomplete = new google.maps.places.Autocomplete(input, {country: 'IN'})
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -210,9 +243,6 @@
                         }
                     }
                 }
-                
-                //offerBindingStep2.myId = stopage['formatted_address'];
-                
                 
                 if(myId === "stopage1")
                 {
@@ -235,7 +265,6 @@
                     app.step2.viewModel.stopage5 = stopage['formatted_address'];
                 }
                 
-               // this.set(myId,stopage['formatted_address'])
                 sessionStorage.setItem(myId+'_lat',stopage.geometry.location.lat());
                 sessionStorage.setItem(myId+'_long',stopage.geometry.location.lng());
             });
@@ -293,8 +322,6 @@
                 stopage4 = this.get('stopage4'),
                 stopage5 = this.get('stopage5'),
                 destination = this.get('destination');
-            
-            var gender = $(".gender[type='radio']:checked").val();
             
             if(source === "")
             {

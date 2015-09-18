@@ -8,7 +8,7 @@
 .carPassenger {display:none}
 .bikePassenger {display:none}
 .roundTrip .km-switch {float:right}
-.returnDiv {display:none}
+/*.returnDiv {display:none}*/
 .carPassenger .gender {display:none}
 select {background:#FFF}
 #deleteStop {display:none}
@@ -23,3 +23,5 @@ select {background:#FFF}
 */
 
 #DivError {display:none}
+
+.incrementNo {display:none}
