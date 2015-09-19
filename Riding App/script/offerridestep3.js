@@ -14,6 +14,7 @@
         priceBox:'',
         show: function()
         {
+            
             //app.step3.viewModel.registervehicle(sessionStorage.getItem("vehicleSelect"));
             $('#vechicleName').text(sessionStorage.getItem("vehicleSelect"));
             
@@ -110,53 +111,52 @@
             });
             
             /*increment the value*/
-            $('.increment1').click(function(){
+            $('.priceBox1Increment').click(function(){
                console.log($('#innerRight1 p input').attr('id'));
                 app.step3.viewModel.priceIncrement($('#innerRight1 p input').attr('id'));
             });
             
-            $('.increment2').click(function(){
+            $('.priceBox2Increment').click(function(){
                 console.log($('#innerRight2 p input').attr('id'));
                 app.step3.viewModel.priceIncrement($('#innerRight2 p input').attr('id'));
             });
             
-            $('.increment3').click(function(){
+            $('.priceBox3Increment').click(function(){
                 app.step3.viewModel.priceIncrement($('#innerRight3 p input').attr('id'));
             });
             
-            $('.increment4').click(function(){
+            $('.priceBox4Increment').click(function(){
                 app.step3.viewModel.priceIncrement($('#innerRight4 p input').attr('id'));
             });
             
-            $('.increment5').click(function(){
+            $('.priceBox5Increment').click(function(){
                 app.step3.viewModel.priceIncrement($('#innerRight5 p input').attr('id'));
             });
             
             /*decrement value*/
-            $('.decrement1').click(function(){
+            $('.priceBox1Decrement').click(function(){
                 app.step3.viewModel.priceDecrement($('#innerRight1 p input').attr('id'));
             });
             
-            $('.decrement2').click(function(){
+            $('.priceBox2Decrement').click(function(){
                 app.step3.viewModel.priceDecrement($('#innerRight2 p input').attr('id'));
             });
             
-            $('.decrement3').click(function(){
+            $('.priceBox3Decrement').click(function(){
                 app.step3.viewModel.priceDecrement($('#innerRight3 p input').attr('id'));
             });
             
-            $('.decrement4').click(function(){
+            $('.priceBox4Decrement').click(function(){
                 app.step3.viewModel.priceDecrement($('#innerRight4 p input').attr('id'));
             });
             
-            $('.decrement5').click(function(){
+            $('.priceBox5Decrement').click(function(){
                 app.step3.viewModel.priceDecrement($('#innerRight5 p input').attr('id'));
             });
         },
         
         setMultipleStopageHtml : function(stopageTime)
         {
-            
             var final = stopageTime.length -1;
             
             var mulHtml = '';
@@ -164,12 +164,12 @@
             
             var distance,maxP,minP;
             
-            for(var a=0,b=1;a<stopageTime.length;a++,b++)
+            for(var a=0,b=1;a<stopageTime.length-1;a++,b++)
             {
-                if(a===final)
+                /*if(a===final)
                 {
                     break;
-                }
+                }*/
                 if(a===0)
                 {
                     distance = app.step3.viewModel.multipleCalculateDistance(sessionStorage.getItem('source_lat'),sessionStorage.getItem('source_long'),  sessionStorage.getItem('stopage'+b+'_lat'),sessionStorage.getItem('stopage'+b+'_long'));
@@ -177,7 +177,8 @@
                     minP = distance*sessionStorage.getItem('min');
                     
                     stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
-                    sessionStorage.setItem('priceBox'+b,maxP);
+                    sessionStorage.setItem('priceBox'+b+'_max',maxP);
+                    sessionStorage.setItem('priceBox'+b+'_min',minP);
                 }
                 else
                 {
@@ -187,7 +188,8 @@
                         maxP = distance*sessionStorage.getItem('max');
                         minP = distance*sessionStorage.getItem('min');
                         stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
-                        sessionStorage.setItem('priceBox'+b,maxP);
+                        sessionStorage.setItem('priceBox'+b+'_max',maxP);
+                        sessionStorage.setItem('priceBox'+b+'_min',minP);
                     }
                     else
                     {
@@ -195,7 +197,8 @@
                         maxP = distance*sessionStorage.getItem('max');
                         minP = distance*sessionStorage.getItem('min');
                         stopageList.push({distance:distance,maxprice:maxP,minPrice:minP});
-                        sessionStorage.setItem('priceBox'+b,maxP);
+                        sessionStorage.setItem('priceBox'+b+'_max',maxP);
+                        sessionStorage.setItem('priceBox'+b+'_min',minP);
                     }
                 }
             }
@@ -239,55 +242,77 @@
                 mulHtml += '</div>';
                 mulHtml += '<div class="dvRight">';
                 mulHtml += '<div class="innerRight1">';
-                mulHtml += '<p class="increment'+i+'" ><img id="increaseprice" src="style/images/ic_plus.png"/></p>';
-                mulHtml += '<p class="incrementNo"><img id="increaseprice" src="style/images/ic_plus_disabled.png"/></p>';
+                mulHtml += '<p class="priceBox'+i+'Increment" ><img id="increaseprice" src="style/images/ic_plus.png"/></p>';
+                mulHtml += '<p class="priceBox'+i+'IncrementNo"><img id="increaseprice" src="style/images/ic_plus_disabled.png"/></p>';
                 mulHtml += '</div>';
                 mulHtml += '<div class="innerRight2" id="innerRight'+i+'">';
                 mulHtml += '<p><input type="text" class="priceBox" id="priceBox'+i+'" data-bind="value:priceBox" value="'+stopageList[x]['maxprice']+'" disabled/></p>';
                 mulHtml += '</div>';
                 mulHtml += '<div class="innerRight3">';
-                mulHtml += '<p class="decrement'+i+'"><img id="decreaseprice'+i+'"  src="style/images/ic_minus.png"/></p>';
-                mulHtml += '<p class="decrementNO"><img id="decreaseprice'+i+'"  src="style/images/ic_minus_disabled.png"/></p>';
+                mulHtml += '<p class="priceBox'+i+'Decrement"><img id="decreaseprice'+i+'"  src="style/images/ic_minus.png"/></p>';
+                mulHtml += '<p class="priceBox'+i+'DecrementNO"><img id="decreaseprice'+i+'"  src="style/images/ic_minus_disabled.png"/></p>';
                 mulHtml += '</div>';
                 mulHtml += '</div>';
                 mulHtml += '</div>';
             }
             $('.mainContentDv').html(mulHtml);
-            console.log(stopageTime.length);
+            
             for(var y=0,k=1;y<stopageTime.length-1;y++,k++)
             {
-                console.log(typeof $('#priceBox'+k).val());
-                console.log(typeof stopageList[y]['maxprice']);
-                if(parseInt($('#priceBox'+k).val()) === stopageList[y]['maxprice'])
+                if(parseInt($('#priceBox'+k).val()) === parseInt(sessionStorage.getItem('priceBox'+k)))
                 {
-                    alert("max");
-                    $('.incrementNo').css('display','block')
-                    $('.increment'+k).css('display','none');
-                    $('.decrementNO').css('display','none')
-                    $('.decrement'+k).css('display','block');
+                    $('.priceBox'+k+'IncrementNo').css('display','block')
+                    $('.priceBox'+k+'Increment').css('display','none');
+                    $('.priceBox'+k+'DecrementNO').css('display','none')
+                    $('.priceBox'+k+'Decrement').css('display','block');
                 }
                 else
                 {
-                    alert("no");
-                    $('.incrementNo').css('display','none')
-                    $('.increment'+k).css('display','block');
-                     $('.decrementNO').css('display','block');
-                    $('.decrement'+k).css('display','none');
+                    $('.priceBox'+k+'IncrementNo').css('display','none')
+                    $('.priceBox'+k+'Increment').css('display','block');
+                    $('.priceBox'+k+'DecrementNO').css('display','block');
+                    $('.priceBox'+k+'Decrement').css('display','none');
                 }
             }
-           // $('.decrementNO').css('display','none');
-           // $('.incrementNo').css('display','none');
         },
         
         priceIncrement:function(data)
         {
             document.getElementById(data).value++;
+            if(parseInt($('#'+data).val()) === parseInt(sessionStorage.getItem(data+'_max')))
+            {
+                
+                console.log("equal");
+                $('.'+data+'IncrementNo').show();
+                $('.'+data+'Increment').hide();
+                
+            }
+            else
+            {
+                console.log("noequal");
+                $('.'+data+'IncrementNo').hide();
+                $('.'+data+'Increment').show();
+                $('.'+data+'DecrementNO').hide();
+                $('.'+data+'Decrement').show();
+            }
         },
         
         priceDecrement:function(data)
         {
-            console.log($('#'+data).val());
             document.getElementById(data).value--;
+            if(parseInt($('#'+data).val()) === parseInt(sessionStorage.getItem(data+'_min')))
+            {
+                $('.'+data+'DecrementNO').show();
+                $('.'+data+'Decrement').hide();
+                
+            }
+            else
+            {
+                $('.'+data+'IncrementNo').hide();
+                $('.'+data+'Increment').show();
+                $('.'+data+'DecrementNO').hide();
+                $('.'+data+'Decrement').show();
+            }
         },
         
         setSingleStopageHtml : function(singleData)
