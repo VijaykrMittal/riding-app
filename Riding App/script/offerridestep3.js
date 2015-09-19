@@ -14,6 +14,12 @@
         priceBox:'',
         show: function()
         {
+            $('.addmoreBtn').show();
+            $('.addcarDv').css('display','none');
+            $('.addbikeDv').css('display','none');
+            $('.addbusDv').css('display','none');
+            
+            app.step3.viewModel.datagetAPIStep3();
             
             //app.step3.viewModel.registervehicle(sessionStorage.getItem("vehicleSelect"));
             $('#vechicleName').text(sessionStorage.getItem("vehicleSelect"));
@@ -22,7 +28,6 @@
             {
                 singleRoute=[];
                 singleRoute.push({source:sessionStorage.getItem('source_locality'),source_lat:sessionStorage.getItem('source_lat'),source_long:sessionStorage.getItem('source_long'),destination:sessionStorage.getItem('Destination_locality'),destination_lat:sessionStorage.getItem('destination_lat'),destination_long:sessionStorage.getItem('destination_long')});
-                console.log(singleRoute);
                 app.step3.viewModel.setSingleStopageHtml(singleRoute);
             }
             else
@@ -111,13 +116,15 @@
             });
             
             /*increment the value*/
+            $('.priceBoxIncrement').click(function(){
+                app.step3.viewModel.priceIncrementSingle($('.innerRight2 p input').attr('id'));
+            });
+            
             $('.priceBox1Increment').click(function(){
-               console.log($('#innerRight1 p input').attr('id'));
                 app.step3.viewModel.priceIncrement($('#innerRight1 p input').attr('id'));
             });
             
             $('.priceBox2Increment').click(function(){
-                console.log($('#innerRight2 p input').attr('id'));
                 app.step3.viewModel.priceIncrement($('#innerRight2 p input').attr('id'));
             });
             
@@ -134,6 +141,10 @@
             });
             
             /*decrement value*/
+             $('.priceBoxDecrement').click(function(){
+                app.step3.viewModel.priceDecrementSingle($('.innerRight2 p input').attr('id'));
+            });
+            
             $('.priceBox1Decrement').click(function(){
                 app.step3.viewModel.priceDecrement($('#innerRight1 p input').attr('id'));
             });
@@ -153,6 +164,45 @@
             $('.priceBox5Decrement').click(function(){
                 app.step3.viewModel.priceDecrement($('#innerRight5 p input').attr('id'));
             });
+        },
+        
+        datagetAPIStep3 : function()
+        {
+            var dataS = new kendo.data.DataSource({
+                transport:{
+                    read:{
+                        url:'http://ride.baniyacommunity.com/webservices/offer/ride',
+                        type:'GET',
+                        dataType:'json'
+                    }
+                },
+                schema:{
+                    data:function(data)
+                    {
+                        return [data];
+                    }
+                },
+                error:function(e){
+                    app.mobileApp.hideLoading();
+                    navigator.notification.alert("Server not responding properly.Please check your internet connection.",
+                        function () { }, "Notification", 'Ok');
+                }
+            });
+            dataS.fetch(function(){
+                var data = this.data();
+                app.step3.viewModel.setBikeHtml(data[0]['bike']);
+                app.step3.viewModel.setCarHtml(data[0]['car']);
+            });
+        },
+        
+        setBikeHtml:function(data)
+        {
+            console.log(data);
+        },
+        
+        setCarHtml:function(data)
+        {
+            console.log(data);
         },
         
         setMultipleStopageHtml : function(stopageTime)
@@ -259,7 +309,7 @@
             
             for(var y=0,k=1;y<stopageTime.length-1;y++,k++)
             {
-                if(parseInt($('#priceBox'+k).val()) === parseInt(sessionStorage.getItem('priceBox'+k)))
+                if(parseInt($('#priceBox'+k).val()) === parseInt(sessionStorage.getItem('priceBox'+k+'_max')))
                 {
                     $('.priceBox'+k+'IncrementNo').css('display','block')
                     $('.priceBox'+k+'Increment').css('display','none');
@@ -281,20 +331,33 @@
             document.getElementById(data).value++;
             if(parseInt($('#'+data).val()) === parseInt(sessionStorage.getItem(data+'_max')))
             {
-                
-                console.log("equal");
                 $('.'+data+'IncrementNo').show();
                 $('.'+data+'Increment').hide();
-                
             }
             else
             {
-                console.log("noequal");
                 $('.'+data+'IncrementNo').hide();
                 $('.'+data+'Increment').show();
                 $('.'+data+'DecrementNO').hide();
                 $('.'+data+'Decrement').show();
+            } 
+        },
+        
+        priceIncrementSingle :function(data)
+        {
+            document.getElementById(data).value++;
+            if(parseInt($('#'+data).val()) === parseInt(sessionStorage.getItem(data+'singleMaxData')))
+            {
+                $('.'+data+'IncrementNo').show();
+                $('.'+data+'Increment').hide();
             }
+            else
+            {
+                $('.'+data+'IncrementNo').hide();
+                $('.'+data+'Increment').show();
+                $('.'+data+'DecrementNO').hide();
+                $('.'+data+'Decrement').show();
+            }    
         },
         
         priceDecrement:function(data)
@@ -315,9 +378,32 @@
             }
         },
         
+        priceDecrementSingle:function(data)
+        {
+            document.getElementById(data).value--;
+            if(parseInt($('#'+data).val()) === parseInt(sessionStorage.getItem(data+'singleMinData')))
+            {
+                $('.'+data+'DecrementNO').show();
+                $('.'+data+'Decrement').hide();
+                
+            }
+            else
+            {
+                $('.'+data+'IncrementNo').hide();
+                $('.'+data+'Increment').show();
+                $('.'+data+'DecrementNO').hide();
+                $('.'+data+'Decrement').show();
+            }
+        },
+        
         setSingleStopageHtml : function(singleData)
         {
             var route = app.step3.viewModel.calculateDistance(singleData[0]['source_lat'],singleData[0]['source_long'],singleData[0]['destination_lat'],singleData[0]['destination_long']);
+            singleMaxP = route*sessionStorage.getItem('max');
+            singleMinP = route*sessionStorage.getItem('min');
+            sessionStorage.setItem('priceBoxsingleMaxData',singleMaxP);
+            sessionStorage.setItem('priceBoxsingleMinData',singleMinP);
+            
             var singleHtml = '';
             singleHtml += '<div class="stopagepriceDv">';
             singleHtml += '<div class="dvLeft">';
@@ -336,24 +422,39 @@
             singleHtml += '</div>';
             singleHtml += '<div class="dvRight">';
             singleHtml += '<div class="innerRight1">';
-            singleHtml += '<p><img id="increaseprice" src="style/images/ic_plus.png"/></p>';
+            singleHtml += '<p class="priceBoxIncrement"><img id="increaseprice" src="style/images/ic_plus.png"/></p>';
+            singleHtml += '<p class="priceBoxIncrementNo"><img id="increaseprice" src="style/images/ic_plus_disabled.png"/></p>';
             singleHtml += '</div>';
             singleHtml += '<div class="innerRight2">';
-            singleHtml += '<p><input type="text" class="priceBox" value="135" disabled/></p>';
+            singleHtml += '<p><input type="text" class="priceBox" id="priceBox" value="'+singleMaxP+'" disabled/></p>';
             singleHtml += '</div>';
             singleHtml += '<div class="innerRight3">';
-            singleHtml += '<p><img id="decreaseprice" src="style/images/ic_minus.png"/></p>';
+            singleHtml += '<p class="priceBoxDecrement"><img id="decreaseprice"  src="style/images/ic_minus.png"/></p>';
+            singleHtml += '<p class="priceBoxDecrementNO"><img id="decreaseprice"  src="style/images/ic_minus_disabled.png"/></p>';
             singleHtml += '</div>';
             singleHtml += '</div>';
             singleHtml += '</div>';
             
             $('.mainContentDv').html(singleHtml);
+            
+            if(parseInt($('#priceBox').val()) === singleMaxP)
+            {
+                $('.priceBoxIncrementNo').css('display','block')
+                $('.priceBoxIncrement').css('display','none');
+                $('.priceBoxDecrementNO').css('display','none')
+                $('.priceBoxDecrement').css('display','block');
+            }
+            else
+            {
+                $('.priceBoxIncrementNo').css('display','none')
+                $('.priceBoxIncrement').css('display','block');
+                $('.priceBoxDecrementNO').css('display','block');
+                $('.priceBoxDecrement').css('display','none');
+            }
         },
         
         multipleCalculateDistance:function(sourceLat,sourceLong,destinationLat,destinationLong)
         {
-            console.log(sourceLat+","+sourceLong+","+destinationLat+","+destinationLong);
-            
             var R = 6371; // Radius of the earth in km
             var dLat = app.step3.viewModel.degToRed(sourceLat - destinationLat);  // deg2rad below sessionStorage.getItem('source_lat');
             var dLon = app.step3.viewModel.degToRed(sourceLong-destinationLong); 
@@ -361,8 +462,6 @@
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
             var d = R * c; // Distance in km
             return Math.round(d);  
-            
-            console.log(d);
         },
         
         calculateDistance :function(sourceLat,sourceLong,destinationLat,destinationLong)
@@ -373,9 +472,7 @@
             var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(app.step3.viewModel.degToRed(sessionStorage.getItem('source_lat'))) * Math.cos(app.step3.viewModel.degToRed(sessionStorage.getItem('destination_lat'))) * Math.sin(dLon/2) * Math.sin(dLon/2); 
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
             var d = R * c; // Distance in km
-            return Math.round(d);  
-            
-            console.log(d);
+            return Math.round(d); 
         },
         
         degToRed : function(deg)

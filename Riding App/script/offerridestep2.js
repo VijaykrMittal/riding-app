@@ -36,7 +36,7 @@
         
         show: function()
         {
-            app.step2.viewModel.dataGetWebAPI();
+            
             app.step2.viewModel.setHtmlForVehicle(sessionStorage.getItem("vehicleSelect"));
             
             $('#source').click(function(){
@@ -119,6 +119,7 @@
                 $('#prefGoingWith').val(0);
                 $('#passengerPref').val(0);
                 $('.returnDiv').css('display','none');
+                app.step2.viewModel.dataGetWebAPI();
                 sessionStorage.setItem('stepScndStatus',true);
             }
             else
@@ -152,9 +153,12 @@
             dataS.fetch(function(){
                 var data = this.data();
                 console.log(data);
+                //app.step2.viewModel.carData = data[0]['car'];
+               // app.step3.viewModel.datagetAPIStep3(data[0]['car']);
                 sessionStorage.setItem("max",data[0]['prcie']['max']);
                 sessionStorage.setItem("min",data[0]['prcie']['min']);
             });
+           
         },
         
         setHtmlForVehicle : function(data)
